@@ -1,0 +1,26 @@
+{
+  "name": "scriptfusion/phpunit-immediate-exception-printer",
+  "description": "Immediately prints any exceptions or assertion failures that occur during testing.",
+  "authors": [
+    {
+      "name": "Bilge",
+      "email": "bilge@scriptfusion.com"
+    }
+  ],
+  "require": {
+    "phpunit/phpunit": "^5.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "ScriptFUSION\\PHPUnitImmediateExceptionPrinter\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ScriptFUSIONTest\\PHPUnitImmediateExceptionPrinter\\": "test"
+    }
+  },
+  "scripts": {
+    "test": "phpunit -c test"
+  }
+}

@@ -1,0 +1,15 @@
+<phpunit
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    colors="true"
+    printerClass="ScriptFUSION\PHPUnitImmediateExceptionPrinter\ImmediateExceptionPrinter"
+>
+    <testsuite>
+        <directory suffix=".phpt">functional</directory>
+    </testsuite>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>..</directory>
+        </whitelist>
+    </filter>
+</phpunit>
