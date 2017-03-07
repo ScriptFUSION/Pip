@@ -1,6 +1,6 @@
 {
   "name": "scriptfusion/phpunit-immediate-exception-printer",
-  "description": "Immediately prints any exceptions or assertion failures that occur during testing.",
+  "description": "Immediately prints exception and assertion failures during testing.",
   "authors": [
     {
       "name": "Bilge",

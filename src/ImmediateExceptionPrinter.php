@@ -59,7 +59,7 @@ class ImmediateExceptionPrinter extends \PHPUnit_TextUI_ResultPrinter
 
         $this->write(sprintf(
             '%3d%% %s ',
-            round($this->numTestsRun / $this->numTests * 100),
+            floor($this->numTestsRun / $this->numTests * 100),
             $this->progress
         ));
         $this->writeWithColor($this->lastColour, \PHPUnit_Util_Test::describe($test), false);
