@@ -51,7 +51,7 @@ Not shown: the normal test summary output you're used to seeing at the end of a 
 ## Requirements
 
 * PHP 5.6 or newer.
-* [PHPUnit][PHPUnit] 5.5 or newer. PHPUnit 6 not yet supported.
+* [PHPUnit][PHPUnit] 5.5 or newer.
 
 ## Testing
 

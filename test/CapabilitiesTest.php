@@ -1,7 +1,9 @@
 <?php
 namespace ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter;
 
-final class CapabilitiesTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+final class CapabilitiesTest extends TestCase
 {
     public function testSuccess()
     {
@@ -30,7 +32,7 @@ final class CapabilitiesTest extends \PHPUnit_Framework_TestCase
 
     public function testSkipped()
     {
-        $this->markTestSkipped();
+        self::markTestSkipped();
     }
 
     public function testRisky()
@@ -39,7 +41,7 @@ final class CapabilitiesTest extends \PHPUnit_Framework_TestCase
 
     public function testIncomplete()
     {
-        $this->markTestIncomplete();
+        self::markTestIncomplete();
     }
 
     /**

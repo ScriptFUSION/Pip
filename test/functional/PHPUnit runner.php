@@ -1,4 +1,8 @@
 <?php
 require_once 'vendor/autoload.php';
 
-PHPUnit_TextUI_Command::main();
+if (class_exists(PHPUnit_TextUI_Command::class)) {
+    PHPUnit_TextUI_Command::main();
+} else {
+    PHPUnit\TextUI\Command::main();
+}
