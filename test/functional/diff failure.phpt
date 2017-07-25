@@ -16,8 +16,8 @@ PHPUnit %s
 [31m--- Expected[0m
 [31m+++ Actual[0m
 [31m@@ @@[0m
-[31m-foo[0m
-[31m+LogicException: foo[0m
+[31m-%Sfoo%S[0m
+[31m+%SLogicException: foo%S[0m
 [31m[0m
 [31m%s%eCapabilitiesTest.php:%i[0m
 [31m[0m
@@ -32,8 +32,8 @@ Failed asserting that two strings are identical.
 --- Expected
 +++ Actual
 @@ @@
--foo
-+LogicException: foo
+-%Sfoo%S
++%SLogicException: foo%S
 
 %s%eCapabilitiesTest.php:%i
 

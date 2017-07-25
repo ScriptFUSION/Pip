@@ -14,6 +14,6 @@ PHPUnit %s
 
 
 Time: %s
-
+%A
 [30;43mOK, but incomplete, skipped, or risky tests![0m
 [30;43mTests: 1[0m[30;43m, Assertions: 0[0m[30;43m, Risky: 1[0m[30;43m.[0m

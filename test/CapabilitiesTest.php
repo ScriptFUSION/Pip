@@ -59,4 +59,19 @@ final class CapabilitiesTest extends TestCase
             'baz' => ['qux'],
         ];
     }
+
+    /**
+     * @dataProvider provideSuccessesAndFailures
+     */
+    public function testSuccessAfterFailure($bool)
+    {
+        self::assertTrue($bool);
+    }
+
+    public function provideSuccessesAndFailures()
+    {
+        for ($i = 0; $i < 4; ++$i) {
+            yield [$i !== 1];
+        }
+    }
 }

@@ -27,6 +27,13 @@ trait Printer
      */
     protected $lastColour;
 
+    /**
+     * Indicates whether any errors or exceptions have occurred during the entire test run.
+     *
+     * @var bool
+     */
+    protected $flawless = true;
+
     private static $performanceThresholds = [
         'fg-red' => 1000,
         'fg-yellow' => 200,
@@ -50,7 +57,7 @@ trait Printer
     protected function writeProgress($progress)
     {
         // Record progress so it can be written later instead of at start of line.
-        $this->progress = $progress;
+        $this->progress = $this->flawless ? $progress : $this->formatWithColor('fg-red', $progress);
 
         ++$this->numTestsRun;
     }
@@ -157,6 +164,7 @@ trait Printer
 
         $this->exception = $e;
         $this->lastTestFailed = true;
+        $this->flawless = false;
     }
 
     /**
@@ -170,5 +178,6 @@ trait Printer
 
         $this->exception = $e;
         $this->lastTestFailed = true;
+        $this->flawless = false;
     }
 }
