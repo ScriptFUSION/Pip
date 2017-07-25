@@ -12,16 +12,17 @@ Immediate Exception Printer is a [PHPUnit][PHPUnit] plug-in that prints out exce
 ## Benefits
 
 * Immediately print out exceptions and assertion failures as they occur.
+* Flawless test suite indicator: success dot turns red if any prior tests failed.
 * Display the execution time of each test in tiered colour bands.
 * Display the name of each test case as it is executed.
 
 ## Preview
 
-The following preview is somewhat atypical but shows all tested output cases this printer supports.
+The following preview is somewhat atypical but shows all supported output cases.
 
-![Preview image](https://raw.githubusercontent.com/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/master/doc/images/test%20run%201.0.png)
+![Preview image](https://raw.githubusercontent.com/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/master/doc/images/test%20run%201.2.png)
 
-Not shown: the normal test summary output you're used to seeing at the end of a test run. This library makes no attempt to modify the summary; only runtime output is changed.
+This library makes no attempt to modify the test summary; only runtime output is changed.
 
 ## Usage
 
@@ -90,8 +91,8 @@ Thanks to the following open source projects that inspired this project. Keep be
   [Downloads image]: https://poser.pugx.org/scriptfusion/phpunit-immediate-exception-printer/downloads "Total downloads"
   [Build]: https://travis-ci.org/ScriptFUSION/PHPUnit-Immediate-Exception-Printer
   [Build image]: https://travis-ci.org/ScriptFUSION/PHPUnit-Immediate-Exception-Printer.svg?branch=master "Build status"
-  [Coverage]: https://coveralls.io/github/ScriptFUSION/PHPUnit-Immediate-Exception-Printer
-  [Coverage image]: https://coveralls.io/repos/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/badge.svg "Test coverage"
+  [Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Exception-Printer
+  [Coverage image]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/branch/master/graphs/badge.svg "Test coverage"
   [Style]: https://styleci.io/repos/83920053
   [Style image]: https://styleci.io/repos/83920053/shield?style=flat "Code style"
 
