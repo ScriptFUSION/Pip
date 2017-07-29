@@ -12,7 +12,7 @@ Immediate Exception Printer is a [PHPUnit][PHPUnit] plug-in that prints out exce
 ## Benefits
 
 * Immediately print out exceptions and assertion failures as they occur.
-* Flawless test suite indicator: success dot turns red if any prior tests failed.
+* Flawless test suite indicator: success dot turns to red exclamation mark if any prior tests failed.
 * Display the execution time of each test in tiered colour bands.
 * Display the name of each test case as it is executed.
 
@@ -20,13 +20,13 @@ Immediate Exception Printer is a [PHPUnit][PHPUnit] plug-in that prints out exce
 
 The following preview is somewhat atypical but shows all supported output cases.
 
-![Preview image](https://raw.githubusercontent.com/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/master/doc/images/test%20run%201.2.png)
+![Preview image](https://raw.githubusercontent.com/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/master/doc/images/test%20run%201.3.png)
 
-This library makes no attempt to modify the test summary; only runtime output is changed.
+This printer makes no attempt to modify the test summary; only runtime output is changed.
 
 ## Usage
 
-1. Add the library to your Composer file's `require-dev` section.
+1. Add the dependency to your Composer file's `require-dev` section.
 
     ```json
     "scriptfusion/phpunit-immediate-exception-printer": "^1"

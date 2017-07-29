@@ -9,7 +9,7 @@
     </testsuite>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory>..</directory>
+            <directory>../src</directory>
         </whitelist>
     </filter>
 </phpunit>
