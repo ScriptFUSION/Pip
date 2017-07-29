@@ -17,8 +17,8 @@ PHPUnit %s
 [31m[0m
 [31m%s%eCapabilitiesTest.php:%i[0m
 [31m[0m
- 75% [31m.[0m [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testSuccessAfterFailure with data set #2 (true)[0m[32m (%i ms)[0m
-100% [31m.[0m [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testSuccessAfterFailure with data set #3 (true)[0m[32m (%i ms)[0m
+ 75% [31m![0m [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testSuccessAfterFailure with data set #2 (true)[0m[32m (%i ms)[0m
+100% [31m![0m [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testSuccessAfterFailure with data set #3 (true)[0m[32m (%i ms)[0m
 
 
 Time: %s

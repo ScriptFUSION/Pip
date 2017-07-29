@@ -57,7 +57,11 @@ trait Printer
     protected function writeProgress($progress)
     {
         // Record progress so it can be written later instead of at start of line.
-        $this->progress = $this->flawless ? $progress : $this->formatWithColor('fg-red', $progress);
+        $this->progress = !$this->flawless && $progress === '.'
+            // If a previous error or exception occurred, replace '.' with red '!'.
+            ? $this->formatWithColor('fg-red', '!')
+            : $progress
+        ;
 
         ++$this->numTestsRun;
     }
