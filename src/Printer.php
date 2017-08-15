@@ -2,6 +2,7 @@
 namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\ExceptionWrapper;
 use PHPUnit\Framework\Test;
 
 trait Printer
@@ -93,7 +94,7 @@ trait Printer
         $this->writePerformance($time);
 
         if ($this->exception) {
-            $this->writeExceptionTrace($this->exception);
+            $this->writeException($this->exception);
         }
     }
 
@@ -129,18 +130,42 @@ trait Printer
      *
      * @param \Exception $exception Exception.
      */
-    protected function writeExceptionTrace(\Exception $exception)
+    protected function writeException(\Exception $exception)
+    {
+        if ($exception instanceof \PHPUnit_Framework_AssertionFailedError
+            || $exception instanceof AssertionFailedError) {
+            $this->writeAssertionFailure($exception);
+        } elseif ($exception instanceof \PHPUnit_Framework_ExceptionWrapper
+            || $exception instanceof ExceptionWrapper) {
+            $this->writeExceptionTrace($exception);
+        }
+    }
+
+    protected function writeAssertionFailure($exception)
     {
         $this->writeNewLine();
 
-        // Parse nested exception trace line by line.
         foreach (explode("\n", $exception) as $line) {
+            $this->writeWithColor('fg-red', $line);
+        }
+    }
+
+    /**
+     * @param ExceptionWrapper $exception
+     */
+    protected function writeExceptionTrace($exception)
+    {
+        $this->writeNewLine();
+
+        do {
+            $exceptionStack[] = $exception;
+        } while ($exception = $exception->getPreviousWrapped());
+
+        // Parse nested exception trace line by line.
+        foreach (explode("\n", $exception = array_shift($exceptionStack)) as $line) {
             // Print exception name and message.
-            if (!$exception instanceof \PHPUnit_Framework_AssertionFailedError
-                && !$exception instanceof AssertionFailedError
-                && false !== $pos = strpos($line, ': ')
-            ) {
-                $whitespace = str_repeat(' ', $pos + 2);
+            if ($exception && false !== $pos = strpos($line, $exception->getClassName() . ': ')) {
+                $whitespace = str_repeat(' ', ($pos += strlen($exception->getClassName())) + 2);
                 $this->writeWithColor('bg-red,fg-white', $whitespace);
 
                 // Exception name.
@@ -149,6 +174,8 @@ trait Printer
                 $this->writeWithColor('fg-red', substr($line, $pos + 1));
 
                 $this->writeWithColor('bg-red,fg-white', $whitespace);
+
+                $exception = array_shift($exceptionStack);
 
                 continue;
             }

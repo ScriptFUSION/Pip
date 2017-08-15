@@ -20,6 +20,11 @@ final class CapabilitiesTest extends TestCase
         throw new \LogicException('foo');
     }
 
+    public function testExceptionStackTrace()
+    {
+        throw new StackTraceException(new NestedStackTraceException);
+    }
+
     public function testNestedException()
     {
         new ExceptionThrower;
