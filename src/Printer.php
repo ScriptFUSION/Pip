@@ -10,9 +10,16 @@ trait Printer
     /**
      * The exception thrown by the last test.
      *
-     * @var \Exception|null
+     * @var ExceptionWrapper|null
      */
     protected $exception;
+
+    /**
+     * The assertion failure thrown by the last test.
+     *
+     * @var AssertionFailedError|null
+     */
+    protected $failure;
 
     /**
      * PHPUnit built-in progress indication character, e.g. E for error.
@@ -46,7 +53,7 @@ trait Printer
      */
     protected function onStartTest()
     {
-        $this->exception = $this->progress = null;
+        $this->exception = $this->failure = $this->progress = null;
         $this->lastColour = 'fg-green,bold';
     }
 
@@ -93,9 +100,8 @@ trait Printer
         $this->writeWithColor($this->lastColour, $this->describeTest($test), false);
         $this->writePerformance($time);
 
-        if ($this->exception) {
-            $this->writeException($this->exception);
-        }
+        $this->exception && $this->writeException($this->exception);
+        $this->failure && $this->writeAssertionFailure($this->failure);
     }
 
     protected function describeTest($test)
@@ -126,34 +132,25 @@ trait Printer
     }
 
     /**
-     * Writes the specified exception to the output buffer.
+     * Writes the specified assertion failure's message to the output buffer.
      *
-     * @param \Exception $exception Exception.
+     * @param AssertionFailedError $assertionFailure Assertion failure.
      */
-    protected function writeException(\Exception $exception)
-    {
-        if ($exception instanceof \PHPUnit_Framework_AssertionFailedError
-            || $exception instanceof AssertionFailedError) {
-            $this->writeAssertionFailure($exception);
-        } elseif ($exception instanceof \PHPUnit_Framework_ExceptionWrapper
-            || $exception instanceof ExceptionWrapper) {
-            $this->writeExceptionTrace($exception);
-        }
-    }
-
-    protected function writeAssertionFailure($exception)
+    protected function writeAssertionFailure($assertionFailure)
     {
         $this->writeNewLine();
 
-        foreach (explode("\n", $exception) as $line) {
+        foreach (explode("\n", $assertionFailure) as $line) {
             $this->writeWithColor('fg-red', $line);
         }
     }
 
     /**
-     * @param ExceptionWrapper $exception
+     * Writes the specified exception's message to the output buffer.
+     *
+     * @param ExceptionWrapper $exception Exception.
      */
-    protected function writeExceptionTrace($exception)
+    protected function writeException($exception)
     {
         $this->writeNewLine();
 
@@ -207,7 +204,7 @@ trait Printer
     {
         $this->writeProgressWithColor('fg-red,bold', 'F');
 
-        $this->exception = $e;
+        $this->failure = $e;
         $this->lastTestFailed = true;
         $this->flawless = false;
     }
