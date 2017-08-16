@@ -10,8 +10,8 @@ PHPUnit runner.php
 --EXPECTF--
 PHPUnit %s
 
- 50% . [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDataProvider with data set "foo" ('bar')[0m[32m (%i ms)[0m
-100% . [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDataProvider with data set "baz" ('qux')[0m[32m (%i ms)[0m
+ 50% . [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDataProvider with data set "foo" ('bar')[0m[32m (%d ms)[0m
+100% . [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDataProvider with data set "baz" ('qux')[0m[32m (%d ms)[0m
 
 
 Time: %s

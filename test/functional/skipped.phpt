@@ -10,7 +10,7 @@ PHPUnit runner.php
 --EXPECTF--
 PHPUnit %s
 
-100% [36;1mS[0m [36;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testSkipped[0m[32m (%i ms)[0m
+100% [36;1mS[0m [36;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testSkipped[0m[32m (%d ms)[0m
 
 
 Time: %s
