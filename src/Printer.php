@@ -2,6 +2,7 @@
 namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Error\Notice;
 use PHPUnit\Framework\ExceptionWrapper;
 use PHPUnit\Framework\Test;
 
@@ -154,7 +155,12 @@ trait Printer
     {
         $this->writeNewLine();
 
+        $exceptionStack = [];
         do {
+            if ($exception instanceof Notice) {
+                break;
+            }
+
             $exceptionStack[] = $exception;
         } while ($exception = $exception->getPreviousWrapped());
 
