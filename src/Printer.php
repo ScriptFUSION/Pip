@@ -155,7 +155,7 @@ trait Printer
     {
         $this->writeNewLine();
 
-        $exceptionStack = array();
+        $exceptionStack = [];
         do {
             if ($exception instanceof Notice) {
                 break;
