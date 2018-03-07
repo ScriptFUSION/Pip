@@ -35,6 +35,11 @@ final class CapabilitiesTest extends TestCase
         self::assertSame('foo', 'LogicException: foo');
     }
 
+    public function testNotice()
+    {
+        $i++; // notice: undefined variable
+    }
+
     public function testSkipped()
     {
         self::markTestSkipped();
