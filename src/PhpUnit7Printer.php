@@ -20,7 +20,7 @@ class PhpUnit7Printer extends ResultPrinter
 
     protected function writeProgress(string $progress): void
     {
-      $this->writeProgressFallback($progress);
+        $this->writeProgressFallback($progress);
     }
 
     protected function writeProgressWithColor(string $color, string $buffer): void
