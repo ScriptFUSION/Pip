@@ -7,13 +7,20 @@ use PHPUnit\TextUI\ResultPrinter;
 
 class PhpUnit7Printer extends ResultPrinter
 {
-    use Printer;
+    use Printer {
+      writeProgress as writeProgressFallback;
+    }
 
     public function startTest(Test $test) : void
     {
         parent::startTest($test);
 
         $this->onStartTest();
+    }
+
+    protected function writeProgress(string $progress): void
+    {
+      $this->writeProgressFallback($progress);
     }
 
     protected function writeProgressWithColor(string $color, string $buffer): void
