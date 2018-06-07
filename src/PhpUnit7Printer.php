@@ -9,6 +9,7 @@ class PhpUnit7Printer extends ResultPrinter
 {
     use Printer {
       writeProgress as writeProgressFallback;
+      describeTest as describeTestFallback;
     }
 
     public function startTest(Test $test) : void
@@ -45,5 +46,10 @@ class PhpUnit7Printer extends ResultPrinter
     public function addFailure(Test $test, AssertionFailedError $e, float $time): void
     {
         $this->onAddFailure($e);
+    }
+
+    protected function describeTest($test)
+    {
+        return \PHPUnit\Util\Test::describeAsString($test);
     }
 }
