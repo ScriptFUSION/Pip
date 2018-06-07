@@ -2,6 +2,7 @@
 namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\ExceptionWrapper;
 use PHPUnit\Framework\Test;
 use PHPUnit\TextUI\ResultPrinter;
 
@@ -40,7 +41,7 @@ class PhpUnit7Printer extends ResultPrinter
 
     public function addError(Test $test, \Throwable $t, float $time): void
     {
-        $this->onAddError(new \Exception($t->getMessage(), $t->getCode(), $t));
+        $this->onAddError(new ExceptionWrapper($t));
     }
 
     public function addFailure(Test $test, AssertionFailedError $e, float $time): void
