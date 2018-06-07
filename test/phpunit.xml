@@ -4,7 +4,7 @@
     colors="true"
     printerClass="ScriptFUSION\PHPUnitImmediateExceptionPrinter\ImmediateExceptionPrinter"
 >
-    <testsuite>
+    <testsuite name="functional">
         <directory suffix=".phpt">functional</directory>
     </testsuite>
     <filter>
