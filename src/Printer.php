@@ -8,11 +8,11 @@ use PHPUnit\Framework\Test;
 trait Printer
 {
     /**
-     * The exception thrown by the last test.
+     * The throwable thrown by the last test.
      *
      * @var ExceptionWrapper|null
      */
-    protected $exception;
+    protected $throwable;
 
     /**
      * The assertion failure thrown by the last test.
@@ -184,13 +184,13 @@ trait Printer
     /**
      * Invoked when an exception is thrown in the test runner.
      *
-     * @param \Exception $e
+     * @param \Throwable|\Exception $t
      */
-    protected function onAddError(\Exception $e)
+    protected function onAddError($t)
     {
         $this->writeProgressWithColor('fg-red,bold', 'E');
 
-        $this->exception = $e;
+        $this->throwable = $t;
         $this->lastTestFailed = true;
         $this->flawless = false;
     }
