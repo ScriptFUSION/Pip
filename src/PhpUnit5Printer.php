@@ -1,5 +1,5 @@
 <?php
-namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
+namespace LifeWorksForks\PHPUnitImmediateExceptionPrinter;
 
 class PhpUnit5Printer extends \PHPUnit_TextUI_ResultPrinter
 {

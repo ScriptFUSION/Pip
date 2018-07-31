@@ -10,13 +10,13 @@ PHPUnit runner.php
 --EXPECTF--
 PHPUnit %s
 
-100% [31;1mE[0m [31;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testExceptionStackTrace[0m[32m (%d ms)[0m
+100% [31;1mE[0m [31;1mLifeWorksForksTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testExceptionStackTrace[0m[32m (%d ms)[0m
 
 [41;37m                                                                       [0m
-[41;37m ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\StackTraceException [0m[31m %s in %s%eCapabilitiesTest.php:25[0m
+[41;37m LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\StackTraceException [0m[31m %s in %s%eCapabilitiesTest.php:25[0m
 [41;37m                                                                       [0m
 [31mStack trace:[0m
-[31m#0 [internal function]: ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest->testExceptionStackTrace()[0m
+[31m#0 [internal function]: LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest->testExceptionStackTrace()[0m
 %a
 [31m#%d {main}[0m
 [31m[0m
@@ -24,10 +24,10 @@ PHPUnit %s
 [31m[0m
 [31mCaused by[0m
 [41;37m                                                                             [0m
-[41;37m ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\NestedStackTraceException [0m[31m %s in %s%eCapabilitiesTest.php:%d[0m
+[41;37m LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\NestedStackTraceException [0m[31m %s in %s%eCapabilitiesTest.php:%d[0m
 [41;37m                                                                             [0m
 [31mStack trace:[0m
-[31m#0 [internal function]: ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest->testExceptionStackTrace()[0m
+[31m#0 [internal function]: LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest->testExceptionStackTrace()[0m
 %a
 [31m#%d {main}[0m
 [31m[0m
@@ -39,19 +39,19 @@ Time: %s
 
 There was 1 error:
 
-1) ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testExceptionStackTrace
-ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\StackTraceException: %s in %s%eCapabilitiesTest.php:%d
+1) LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testExceptionStackTrace
+LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\StackTraceException: %s in %s%eCapabilitiesTest.php:%d
 Stack trace:
-#0 [internal function]: ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest->testExceptionStackTrace()
+#0 [internal function]: LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest->testExceptionStackTrace()
 %a
 #%d {main}
 
 %s%eCapabilitiesTest.php:25
 
 Caused by
-ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\NestedStackTraceException: %s in %s%eCapabilitiesTest.php:%d
+LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\NestedStackTraceException: %s in %s%eCapabilitiesTest.php:%d
 Stack trace:
-#0 [internal function]: ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest->testExceptionStackTrace()
+#0 [internal function]: LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest->testExceptionStackTrace()
 %a
 #%d {main}
 

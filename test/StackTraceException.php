@@ -1,5 +1,5 @@
 <?php
-namespace ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter;
+namespace LifeWorksForksTest\PHPUnitImmediateExceptionPrinter;
 
 class StackTraceException extends \RuntimeException
 {

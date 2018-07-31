@@ -1,10 +1,15 @@
 {
-  "name": "scriptfusion/phpunit-immediate-exception-printer",
+  "name": "lifeworks/phpunit-immediate-exception-printer",
   "description": "Immediately prints exception and assertion failures during testing.",
   "authors": [
     {
       "name": "Bilge",
       "email": "bilge@scriptfusion.com"
+    },
+    {
+      "name": "Osh",
+      "email": "karol.slomczynski@gmail.com",
+      "role": "forker"
     }
   ],
   "require": {
@@ -13,12 +18,12 @@
   },
   "autoload": {
     "psr-4": {
-      "ScriptFUSION\\PHPUnitImmediateExceptionPrinter\\": "src"
+      "LifeWorksForks\\PHPUnitImmediateExceptionPrinter\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ScriptFUSIONTest\\PHPUnitImmediateExceptionPrinter\\": "test"
+      "LifeWorksForks\\PHPUnitImmediateExceptionPrinter\\": "test"
     }
   },
   "scripts": {

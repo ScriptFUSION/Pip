@@ -2,7 +2,7 @@
     beStrictAboutOutputDuringTests="true"
     beStrictAboutTestsThatDoNotTestAnything="true"
     colors="true"
-    printerClass="ScriptFUSION\PHPUnitImmediateExceptionPrinter\ImmediateExceptionPrinter"
+    printerClass="LifeWorksForks\PHPUnitImmediateExceptionPrinter\ImmediateExceptionPrinter"
 >
     <testsuite>
         <directory suffix=".phpt">functional</directory>

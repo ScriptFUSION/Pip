@@ -1,5 +1,5 @@
 <?php
-namespace ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter;
+namespace LifeWorksForksTest\PHPUnitImmediateExceptionPrinter;
 
 use PHPUnit\Framework\TestCase;
 
