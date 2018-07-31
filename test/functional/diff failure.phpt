@@ -10,7 +10,7 @@ PHPUnit runner.php
 --EXPECTF--
 PHPUnit %s
 
-100% [31;1mF[0m [31;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDiffFailure[0m[32m (%d ms)[0m
+100% [31;1mF[0m [31;1mLifeWorksForksTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDiffFailure[0m[32m (%d ms)[0m
 
 [31mFailed asserting that two strings are identical.[0m
 [31m--- Expected[0m
@@ -27,7 +27,7 @@ Time: %s
 
 There was 1 failure:
 
-1) ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDiffFailure
+1) LifeWorksForksTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDiffFailure
 Failed asserting that two strings are identical.
 --- Expected
 +++ Actual

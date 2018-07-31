@@ -1,5 +1,5 @@
 <?php
-namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
+namespace LifeWorksForks\PHPUnitImmediateExceptionPrinter;
 
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Test;
