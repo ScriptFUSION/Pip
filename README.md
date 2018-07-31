@@ -20,7 +20,7 @@ Immediate Exception Printer is a [PHPUnit][PHPUnit] plug-in that prints out exce
 
 The following preview is somewhat atypical but shows all supported output cases.
 
-![Preview image](https://raw.githubusercontent.com/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/master/doc/images/test%20run%201.3.png)
+![Preview image](https://raw.githubusercontent.com/workivate/PHPUnit-Immediate-Exception-Printer/master/doc/images/test%20run%201.3.png)
 
 This printer makes no attempt to modify the test summary; only runtime output is changed.
 
@@ -29,7 +29,7 @@ This printer makes no attempt to modify the test summary; only runtime output is
 1. Add the dependency to your Composer file's `require-dev` section.
 
     ```json
-    "scriptfusion/phpunit-immediate-exception-printer": "^1"
+    "workivate/phpunit-immediate-exception-printer": "^1"
     ```
 
 2. Declare the printer class in your [`phpunit.xml` configuration file](https://phpunit.de/manual/current/en/appendixes.configuration.html).
@@ -85,15 +85,15 @@ Thanks to the following open source projects that inspired this project. Keep be
 * [skyzyx/phpunit-result-printer](https://github.com/skyzyx/phpunit-result-printer) &ndash; Design.
 
 
-  [Releases]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/releases
-  [Version image]: https://poser.pugx.org/scriptfusion/phpunit-immediate-exception-printer/version "Latest version"
-  [Downloads]: https://packagist.org/packages/scriptfusion/phpunit-immediate-exception-printer
-  [Downloads image]: https://poser.pugx.org/scriptfusion/phpunit-immediate-exception-printer/downloads "Total downloads"
-  [Build]: https://travis-ci.org/ScriptFUSION/PHPUnit-Immediate-Exception-Printer
-  [Build image]: https://travis-ci.org/ScriptFUSION/PHPUnit-Immediate-Exception-Printer.svg?branch=master "Build status"
-  [Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Exception-Printer
-  [Coverage image]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/branch/master/graphs/badge.svg "Test coverage"
-  [Style]: https://styleci.io/repos/83920053
-  [Style image]: https://styleci.io/repos/83920053/shield?style=flat "Code style"
+  [Releases]: https://github.com/workivate/PHPUnit-Immediate-Exception-Printer/releases
+  ~[Version image]: https://poser.pugx.org/scriptfusion/phpunit-immediate-exception-printer/version "Latest version"~
+  [Downloads]: https://packagist.org/packages/workivate/phpunit-immediate-exception-printer
+  ~[Downloads image]: https://poser.pugx.org/scriptfusion/phpunit-immediate-exception-printer/downloads "Total downloads"~
+  ~[Build]: https://travis-ci.org/ScriptFUSION/PHPUnit-Immediate-Exception-Printer~
+  ~[Build image]: https://travis-ci.org/ScriptFUSION/PHPUnit-Immediate-Exception-Printer.svg?branch=master "Build status"~
+  ~[Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Exception-Printer~
+  ~[Coverage image]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/branch/master/graphs/badge.svg "Test coverage"~
+  ~[Style]: https://styleci.io/repos/83920053~
+  ~[Style image]: https://styleci.io/repos/83920053/shield?style=flat "Code style"~
 
   [PHPUnit]: https://github.com/sebastianbergmann/phpunit
