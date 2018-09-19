@@ -1,9 +1,23 @@
 <?php
 namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
 
+use Exception;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\ExceptionWrapper;
 use PHPUnit\Framework\Test;
+use PHPUnit_Util_Test;
+use Throwable;
+use function array_shift;
+use function class_exists;
+use function explode;
+use function floor;
+use function is_array;
+use function round;
+use function sprintf;
+use function str_repeat;
+use function strlen;
+use function strpos;
+use function substr;
 
 trait Printer
 {
@@ -53,7 +67,7 @@ trait Printer
      */
     protected function onStartTest()
     {
-        $this->exception = $this->failure = $this->progress = null;
+        $this->throwable = $this->failure = $this->progress = null;
         $this->lastColour = 'fg-green,bold';
     }
 
@@ -100,17 +114,18 @@ trait Printer
         $this->writeWithColor($this->lastColour, $this->describeTest($test), false);
         $this->writePerformance($time);
 
-        $this->exception && $this->writeException($this->exception);
+        $this->throwable && $this->writeException($this->throwable);
         $this->failure && $this->writeAssertionFailure($this->failure);
     }
 
     protected function describeTest($test)
     {
-        if (class_exists(\PHPUnit_Util_Test::class)) {
-            return \PHPUnit_Util_Test::describe($test);
+        if (class_exists(PHPUnit_Util_Test::class)) {
+            return PHPUnit_Util_Test::describe($test);
         }
 
-        return \PHPUnit\Util\Test::describe($test);
+        $description = \PHPUnit\Util\Test::describe($test);
+        return is_array($description) ? $description[1] : $description;
     }
 
     /**
