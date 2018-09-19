@@ -1,5 +1,5 @@
 {
-  "name": "scriptfusion/phpunit-immediate-exception-printer",
+  "name": "workivate/PHPUnit-Immediate-Exception-Printer",
   "description": "Immediately prints exception and assertion failures during testing.",
   "authors": [
     {
