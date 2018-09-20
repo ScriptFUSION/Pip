@@ -1,18 +1,33 @@
 <?php
 namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
 
+use Exception;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\ExceptionWrapper;
 use PHPUnit\Framework\Test;
+use PHPUnit_Util_Test;
+use Throwable;
+use function array_shift;
+use function class_exists;
+use function explode;
+use function floor;
+use function is_callable;
+use function is_string;
+use function round;
+use function sprintf;
+use function str_repeat;
+use function strlen;
+use function strpos;
+use function substr;
 
 trait Printer
 {
     /**
-     * The exception thrown by the last test.
+     * The throwable thrown by the last test.
      *
      * @var ExceptionWrapper|null
      */
-    protected $exception;
+    protected $throwable;
 
     /**
      * The assertion failure thrown by the last test.
@@ -53,7 +68,7 @@ trait Printer
      */
     protected function onStartTest()
     {
-        $this->exception = $this->failure = $this->progress = null;
+        $this->throwable = $this->failure = $this->progress = null;
         $this->lastColour = 'fg-green,bold';
     }
 
@@ -100,17 +115,23 @@ trait Printer
         $this->writeWithColor($this->lastColour, $this->describeTest($test), false);
         $this->writePerformance($time);
 
-        $this->exception && $this->writeException($this->exception);
+        $this->throwable && $this->writeException($this->throwable);
         $this->failure && $this->writeAssertionFailure($this->failure);
     }
 
     protected function describeTest($test)
     {
-        if (class_exists(\PHPUnit_Util_Test::class)) {
-            return \PHPUnit_Util_Test::describe($test);
+        if (class_exists(PHPUnit_Util_Test::class)) {
+            return PHPUnit_Util_Test::describe($test);
         }
-
-        return \PHPUnit\Util\Test::describe($test);
+        if (is_callable([\PHPUnit\Util\Test::class, 'describeAsString'])) {
+            return \PHPUnit\Util\Test::describeAsString($test);
+        }
+        $description = \PHPUnit\Util\Test::describe($test);
+        if (is_string($description)) {
+            return $description;
+        }
+        return $description[0] !== '' ? implode('::', $description) : $description[1];
     }
 
     /**
@@ -184,13 +205,13 @@ trait Printer
     /**
      * Invoked when an exception is thrown in the test runner.
      *
-     * @param \Exception $e
+     * @param Throwable|Exception $t
      */
-    protected function onAddError(\Exception $e)
+    protected function onAddError($t)
     {
         $this->writeProgressWithColor('fg-red,bold', 'E');
 
-        $this->exception = $e;
+        $this->throwable = $t;
         $this->lastTestFailed = true;
         $this->flawless = false;
     }
