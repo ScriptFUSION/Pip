@@ -11,7 +11,8 @@ use function array_shift;
 use function class_exists;
 use function explode;
 use function floor;
-use function is_array;
+use function is_callable;
+use function is_string;
 use function round;
 use function sprintf;
 use function str_repeat;
@@ -123,9 +124,14 @@ trait Printer
         if (class_exists(PHPUnit_Util_Test::class)) {
             return PHPUnit_Util_Test::describe($test);
         }
-
+        if (is_callable([\PHPUnit\Util\Test::class, 'describeAsString'])) {
+            return \PHPUnit\Util\Test::describeAsString($test);
+        }
         $description = \PHPUnit\Util\Test::describe($test);
-        return is_array($description) ? $description[1] : $description;
+        if (is_string($description)) {
+            return $description;
+        }
+        return $description[0] !== '' ? implode('::', $description) : $description[1];
     }
 
     /**
