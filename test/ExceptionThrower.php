@@ -1,5 +1,5 @@
 <?php
-namespace ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter;
+namespace ScriptFUSIONTest\Pip;
 
 final class ExceptionThrower
 {

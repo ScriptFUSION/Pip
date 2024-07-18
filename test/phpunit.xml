@@ -1,15 +1,22 @@
-<phpunit
-    beStrictAboutOutputDuringTests="true"
-    beStrictAboutTestsThatDoNotTestAnything="true"
-    colors="true"
-    printerClass="ScriptFUSION\PHPUnitImmediateExceptionPrinter\ImmediateExceptionPrinter"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+  beStrictAboutTestsThatDoNotTestAnything="true"
+  beStrictAboutOutputDuringTests="true"
+  colors="true"
 >
-    <testsuite>
-        <directory suffix=".phpt">functional</directory>
+  <testsuites>
+    <testsuite name="Default">
+      <directory suffix=".phpt">functional</directory>
     </testsuite>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory>../src</directory>
-        </whitelist>
-    </filter>
+  </testsuites>
+
+  <source>
+    <include>
+      <directory>../src</directory>
+    </include>
+  </source>
+
+  <extensions>
+    <bootstrap class="ScriptFUSION\Pip\PipExtension"/>
+  </extensions>
 </phpunit>

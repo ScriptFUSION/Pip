@@ -1,5 +1,5 @@
-PHPUnit Immediate Exception Printer
-===================================
+PHPUnit Immediate Printer
+=========================
 
 [![Latest version][Version image]][Releases]
 [![Total downloads][Downloads image]][Downloads]
@@ -7,7 +7,7 @@ PHPUnit Immediate Exception Printer
 [![Test coverage][Coverage image]][Coverage]
 [![Code style][Style image]][Style]
 
-Immediate Exception Printer is a [PHPUnit][PHPUnit] plug-in that prints out exceptions and assertion failures immediately during a test run. Normally PHPUnit keeps error details secret until the end of the test run, but sometimes we don't want to wait that long. With Immediate Exception Printer, all secrets are immediately revealed, with a few extra benefits, too.
+PHPUnit Immediate Printer (Pip) is a [PHPUnit][] extension that prints exceptions and assertion failures immediately during a test run. Normally PHPUnit keeps failure details secret until the end of the test run, but sometimes we don't want to wait that long. With Pip, all secrets are immediately revealed, with a few extra benefits, too.
 
 ## Benefits
 
@@ -28,31 +28,29 @@ This printer makes no attempt to modify the test summary; only runtime output is
 
 1. Add the dependency to your Composer file's `require-dev` section.
 
-    ```json
-    "scriptfusion/phpunit-immediate-exception-printer": "^1"
+    ```bash
+    composer require --dev scriptfusion/pip
     ```
 
-2. Declare the printer class in your [`phpunit.xml` configuration file](https://phpunit.de/manual/current/en/appendixes.configuration.html).
+2. Declare the printer class in your `phpunit.xml` configuration file.
 
     ```xml
-    <phpunit
-        printerClass="ScriptFUSION\PHPUnitImmediateExceptionPrinter\ImmediateExceptionPrinter"
-        colors="true"
-    >
+    <extensions>
+        <bootstrap class="ScriptFUSION\Pip\PipExtension"/>
+    </extensions>
     ```
 
-3. Run the tests! If you didn't update `phpunit.xml` the same options can be specified on the command-line instead.
+3. Run the tests!
 
     ```bash
-    vendor/bin/phpunit --printer 'ScriptFUSION\PHPUnitImmediateExceptionPrinter\ImmediateExceptionPrinter' --color
+    vendor/bin/phpunit
     ```
 
 4. Enjoy immediate test execution feedback.
 
 ## Requirements
 
-* PHP 5.6 or newer.
-* [PHPUnit][PHPUnit] 5.5 or newer.
+* [PHPUnit][] 10.
 
 ## Testing
 
@@ -69,7 +67,7 @@ To test the output of a particular capability we run `CapabilitiesTest` with the
 One challenge we must overcome is verifying coloured output including ANSI escape sequences. To see these escape sequences we can pipe the output of a specific capability test to `cat -v` as shown in the following example.
 
 ```bash
-vendor/bin/phpunit -c test --colors=always test/CapabilitiesTest --filter ::testSuccess$ | cat -v
+vendor/bin/phpunit -c test --colors=always test/CapabilitiesTest.php --filter ::testSuccess$ | cat -v
 ```
 
 The output from `cat` will print the "escape" character as `^[`. We must replace each occurrence of this character sequence with the literal escape character (ASCII character 27). The easiest way to obtain the real escape character is to just copy it from an existing functional test.

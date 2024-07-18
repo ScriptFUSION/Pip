@@ -2,7 +2,7 @@
 An assertion fails.
 
 --ARGS--
--c test --colors=always test/CapabilitiesTest --filter ::testFailure$
+-c test --colors=always test/CapabilitiesTest.php --filter ::testFailure$
 
 --FILE_EXTERNAL--
 PHPUnit runner.php
@@ -10,19 +10,22 @@ PHPUnit runner.php
 --EXPECTF--
 PHPUnit %s
 
-100% [31;1mF[0m [31;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testFailure[0m[32m (%d ms)[0m
+Runtime: %s
+Configuration: %s
 
-[31mFailed asserting that false is true.[0m
-[31m[0m
-[31m%s%eCapabilitiesTest.php:%d[0m
-[31m[0m
+100% [31;1mF[0m [31;1mScriptFUSIONTest\Pip\CapabilitiesTest::testFailure[0m [32m(%d ms)[0m
+
+[31mFailed asserting that false is true.
+[0m
+[31m%s%eCapabilitiesTest.php:%d
+[0m
 
 
 Time: %s
 
 There was 1 failure:
 
-1) ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testFailure
+1) ScriptFUSIONTest\Pip\CapabilitiesTest::testFailure
 Failed asserting that false is true.
 
 %s%eCapabilitiesTest.php:%d

@@ -2,7 +2,7 @@
 A successful test is fed two cases by a data provider.
 
 --ARGS--
--c test --colors=always test/CapabilitiesTest --filter '::testDataProvider\h'
+-c test --colors=always test/CapabilitiesTest.php --filter '::testDataProvider\h'
 
 --FILE_EXTERNAL--
 PHPUnit runner.php
@@ -10,8 +10,11 @@ PHPUnit runner.php
 --EXPECTF--
 PHPUnit %s
 
- 50% . [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDataProvider with data set "foo" ('bar')[0m[32m (%d ms)[0m
-100% . [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testDataProvider with data set "baz" ('qux')[0m[32m (%d ms)[0m
+Runtime: %s
+Configuration: %s
+
+ 50% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testDataProvider with data set "foo" ('bar')[0m [32m(%d ms)[0m
+100% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testDataProvider with data set "baz" ('qux')[0m [32m(%d ms)[0m
 
 
 Time: %s

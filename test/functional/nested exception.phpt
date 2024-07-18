@@ -2,7 +2,7 @@
 An exception containing another exception is thrown by another class.
 
 --ARGS--
--c test --colors=always test/CapabilitiesTest --filter ::testNestedException$
+-c test --colors=always test/CapabilitiesTest.php --filter ::testNestedException$
 
 --FILE_EXTERNAL--
 PHPUnit runner.php
@@ -10,30 +10,29 @@ PHPUnit runner.php
 --EXPECTF--
 PHPUnit %s
 
-100% [31;1mE[0m [31;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testNestedException[0m[32m (%d ms)[0m
+Runtime: %s
+Configuration: %s
 
-[41;37m                [0m
-[41;37m LogicException [0m[31m foo[0m
-[41;37m                [0m
-[31m[0m
-[31m%s%eExceptionThrower.php:%d[0m
-[31m%s%eCapabilitiesTest.php:%d[0m
-[31m[0m
+100% [31;1mE[0m [31;1mScriptFUSIONTest\Pip\CapabilitiesTest::testNestedException[0m [32m(%d ms)[0m
+
+[37;41m LogicException [0m [31mfoo[0m
+
+[31m%s%eExceptionThrower.php:%d
+%s%eCapabilitiesTest.php:%d
+[0m
 [31mCaused by[0m
-[41;37m                  [0m
-[41;37m RuntimeException [0m[31m bar[0m
-[41;37m                  [0m
-[31m[0m
-[31m%s%eExceptionThrower.php:%d[0m
-[31m%s%eCapabilitiesTest.php:%d[0m
-[31m[0m
+[37;41m RuntimeException [0m [31mbar[0m
+
+[31m%s%eExceptionThrower.php:%d
+%s%eCapabilitiesTest.php:%d
+[0m
 
 
 Time: %s
 
 There was 1 error:
 
-1) ScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testNestedException
+1) ScriptFUSIONTest\Pip\CapabilitiesTest::testNestedException
 LogicException: foo
 
 %s%eExceptionThrower.php:%d

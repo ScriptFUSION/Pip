@@ -1,211 +1,148 @@
 <?php
-namespace ScriptFUSION\PHPUnitImmediateExceptionPrinter;
+declare(strict_types=1);
 
-use PHPUnit\Framework\AssertionFailedError;
-use PHPUnit\Framework\ExceptionWrapper;
-use PHPUnit\Framework\Test;
+namespace ScriptFUSION\Pip;
 
-trait Printer
+use PHPUnit\Event\Code\Throwable;
+use PHPUnit\Event\Event;
+use PHPUnit\Event\Telemetry\HRTime;
+use PHPUnit\Event\Test\ConsideredRisky;
+use PHPUnit\Event\Test\Errored;
+use PHPUnit\Event\Test\Failed;
+use PHPUnit\Event\Test\Finished;
+use PHPUnit\Event\Test\MarkedIncomplete;
+use PHPUnit\Event\Test\Passed;
+use PHPUnit\Event\Test\PhpDeprecationTriggered;
+use PHPUnit\Event\Test\PhpNoticeTriggered;
+use PHPUnit\Event\Test\PhpWarningTriggered;
+use PHPUnit\Event\Test\Prepared;
+use PHPUnit\Event\Test\Skipped;
+use PHPUnit\Event\TestRunner\ExecutionStarted;
+use PHPUnit\Event\Tracer\Tracer;
+use PHPUnit\Util\Color;
+
+final class Printer implements Tracer
 {
-    /**
-     * The exception thrown by the last test.
-     *
-     * @var ExceptionWrapper|null
-     */
-    protected $exception;
-
-    /**
-     * The assertion failure thrown by the last test.
-     *
-     * @var AssertionFailedError|null
-     */
-    protected $failure;
-
-    /**
-     * PHPUnit built-in progress indication character, e.g. E for error.
-     *
-     * @var string
-     */
-    protected $progress;
-
-    /**
-     * Last colour used by a progress indicator.
-     *
-     * @var string
-     */
-    protected $lastColour;
-
-    /**
-     * Indicates whether any errors or exceptions have occurred during the entire test run.
-     *
-     * @var bool
-     */
-    protected $flawless = true;
-
-    private static $performanceThresholds = [
-        'fg-red' => 1000,
-        'fg-yellow' => 200,
-        'fg-green' => 0,
+    private array $performanceThresholds = [
+        'red' => 1000,
+        'yellow' => 200,
+        'green' => 0,
     ];
 
-    /**
-     * Invoked when a test starts.
-     */
-    protected function onStartTest()
+    private int $totalTests;
+
+    private int $testCounter = 0;
+
+    private ?TestStatus $status = null;
+
+    private HRTime $start;
+
+    private ?Throwable $throwable = null;
+
+    private bool $flawless = true;
+
+    public function trace(Event $event): void
     {
-        $this->exception = $this->failure = $this->progress = null;
-        $this->lastColour = 'fg-green,bold';
-    }
-
-    /**
-     * Writes progress to the output buffer.
-     *
-     * @param string $progress
-     */
-    protected function writeProgress($progress)
-    {
-        // Record progress so it can be written later instead of at start of line.
-        $this->progress = !$this->flawless && $progress === '.'
-            // If a previous error or exception occurred, replace '.' with red '!'.
-            ? $this->formatWithColor('fg-red', '!')
-            : $progress
-        ;
-
-        ++$this->numTestsRun;
-    }
-
-    /**
-     * Invoked when coloured progress text is written.
-     *
-     * @param string $color PHPUnit colour name.
-     */
-    protected function onWriteProgressWithColor($color)
-    {
-        $this->lastColour = $color;
-    }
-
-    /**
-     * Invoked when a test ends.
-     *
-     * @param Test $test
-     * @param float $time Number of seconds elapsed.
-     */
-    protected function onEndTest($test, $time)
-    {
-        $this->write(sprintf(
-            '%3d%% %s ',
-            floor($this->numTestsRun / $this->numTests * 100),
-            $this->progress
-        ));
-        $this->writeWithColor($this->lastColour, $this->describeTest($test), false);
-        $this->writePerformance($time);
-
-        $this->exception && $this->writeException($this->exception);
-        $this->failure && $this->writeAssertionFailure($this->failure);
-    }
-
-    protected function describeTest($test)
-    {
-        if (class_exists(\PHPUnit_Util_Test::class)) {
-            return \PHPUnit_Util_Test::describe($test);
+        if ($event instanceof ExecutionStarted) {
+            $this->totalTests = $event->testSuite()->count();
         }
 
-        return \PHPUnit\Util\Test::describe($test);
-    }
+        if ($event instanceof Prepared) {
+            $this->start = $event->telemetryInfo()->time();
+        }
 
-    /**
-     * Writes the test performance metric formatted as the number of milliseconds elapsed.
-     *
-     * @param float $time Number of seconds elapsed.
-     */
-    protected function writePerformance($time)
-    {
-        $ms = round($time * 1000);
+        if ($event instanceof Passed) {
+            $this->status ??= $this->flawless ? TestStatus::Passed : TestStatus::Flawed;
+        }
+        if ($event instanceof Failed) {
+            $this->throwable = $event->throwable();
 
-        foreach (self::$performanceThresholds as $colour => $threshold) {
-            if ($ms > $threshold) {
-                break;
+            $this->status ??= TestStatus::Failed;
+            $this->flawless = false;
+        }
+        if ($event instanceof Errored) {
+            $this->throwable = $event->throwable();
+
+            $this->status ??= TestStatus::Errored;
+            $this->flawless = false;
+        }
+        if ($event instanceof Skipped) {
+            $this->status ??= TestStatus::Skipped;
+        }
+        if ($event instanceof MarkedIncomplete) {
+            $this->status ??= TestStatus::Incomplete;
+        }
+        if ($event instanceof ConsideredRisky) {
+            // Allow risky status to override passed (or flawed) status only.
+            if ($this->status === TestStatus::Passed || $this->status === TestStatus::Flawed) {
+                $this->status = TestStatus::Risky;
             }
         }
-
-        $this->writeWithColor($colour, " ($ms ms)");
-    }
-
-    /**
-     * Writes the specified assertion failure's message to the output buffer.
-     *
-     * @param AssertionFailedError $assertionFailure Assertion failure.
-     */
-    protected function writeAssertionFailure($assertionFailure)
-    {
-        $this->writeNewLine();
-
-        foreach (explode("\n", $assertionFailure) as $line) {
-            $this->writeWithColor('fg-red', $line);
+        if ($event instanceof PhpNoticeTriggered) {
+            $this->status ??= TestStatus::Notice;
         }
-    }
+        if ($event instanceof PhpWarningTriggered) {
+            $this->status ??= TestStatus::Warning;
+        }
+        if ($event instanceof PhpDeprecationTriggered) {
+            $this->status ??= TestStatus::Deprecated;
+        }
 
-    /**
-     * Writes the specified exception's message to the output buffer.
-     *
-     * @param ExceptionWrapper $exception Exception.
-     */
-    protected function writeException($exception)
-    {
-        $this->writeNewLine();
+        if ($event instanceof Finished) {
+            $id = $event->test()->id();
 
-        do {
-            $exceptionStack[] = $exception;
-        } while ($exception = $exception->getPreviousWrapped());
-
-        // Parse nested exception trace line by line.
-        foreach (explode("\n", $exception = array_shift($exceptionStack)) as $line) {
-            // Print exception name and message.
-            if ($exception && false !== $pos = strpos($line, $exception->getClassName() . ': ')) {
-                $whitespace = str_repeat(' ', ($pos += strlen($exception->getClassName())) + 2);
-                $this->writeWithColor('bg-red,fg-white', $whitespace);
-
-                // Exception name.
-                $this->writeWithColor('bg-red,fg-white', sprintf(' %s ', substr($line, 0, $pos)), false);
-                // Exception message.
-                $this->writeWithColor('fg-red', substr($line, $pos + 1));
-
-                $this->writeWithColor('bg-red,fg-white', $whitespace);
-
-                $exception = array_shift($exceptionStack);
-
-                continue;
+            // Data provider case.
+            if ($event->test()->isTestMethod() && $event->test()->testData()->hasDataFromDataProvider()) {
+                $id = substr($id, 0, strrpos($id, '#'));
+                $id .= $event->test()->testData()->dataFromDataProvider()->dataAsStringForResultOutput();
             }
 
-            $this->writeWithColor('fg-red', $line);
+            $ms = round($event->telemetryInfo()->time()->duration($this->start)->asFloat() * 1_000);
+            foreach ($this->performanceThresholds as $colour => $threshold) {
+                if ($ms >= $threshold) {
+                    break;
+                }
+            }
+
+            printf(
+                "%3d%% %s %s %s%s",
+                floor(++$this->testCounter / $this->totalTests * 100),
+                $this->status->getStatusColour() === ''
+                    ? $this->status->getStatusCode()
+                    : Color::colorize("fg-{$this->status->getStatusColour()}", $this->status->getStatusCode()),
+                Color::colorize("fg-{$this->status->getColour()}", $id),
+                Color::colorize("fg-$colour", "($ms ms)"),
+                PHP_EOL,
+            );
+
+            if ($this->status === TestStatus::Failed) {
+                echo PHP_EOL, Color::colorize('fg-red', $this->throwable->description()), PHP_EOL,
+                    Color::colorize('fg-red', $this->throwable->stackTrace()), PHP_EOL
+                ;
+
+                $this->throwable = null;
+            }
+
+            while ($this->status === TestStatus::Errored && $this->throwable) {
+                echo PHP_EOL, Color::colorize('fg-white,bg-red', " {$this->throwable->className()} "), ' ',
+                    Color::colorize('fg-red', $this->throwable->message()), PHP_EOL, PHP_EOL,
+                    Color::colorize('fg-red', $this->throwable->stackTrace()), PHP_EOL
+                ;
+
+                if ($this->throwable->hasPrevious()) {
+                    echo Color::colorize('fg-red', 'Caused by');
+
+                    $this->throwable = $this->throwable->previous();
+                } else {
+                    $this->throwable = null;
+                }
+            }
+
+            $this->status = null;
         }
-    }
 
-    /**
-     * Invoked when an exception is thrown in the test runner.
-     *
-     * @param \Exception $e
-     */
-    protected function onAddError(\Exception $e)
-    {
-        $this->writeProgressWithColor('fg-red,bold', 'E');
-
-        $this->exception = $e;
-        $this->lastTestFailed = true;
-        $this->flawless = false;
-    }
-
-    /**
-     * Invoked when an assertion fails in the test runner.
-     *
-     * @param AssertionFailedError $e
-     */
-    protected function onAddFailure($e)
-    {
-        $this->writeProgressWithColor('fg-red,bold', 'F');
-
-        $this->failure = $e;
-        $this->lastTestFailed = true;
-        $this->flawless = false;
+        if ($event instanceof \PHPUnit\Event\TestRunner\Finished) {
+            echo PHP_EOL, PHP_EOL;
+        }
     }
 }

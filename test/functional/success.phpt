@@ -2,7 +2,7 @@
 An assertion succeeds.
 
 --ARGS--
--c test --colors=always test/CapabilitiesTest --filter ::testSuccess$
+-c test --colors=always test/CapabilitiesTest.php --filter ::testSuccess$
 
 --FILE_EXTERNAL--
 PHPUnit runner.php
@@ -10,7 +10,10 @@ PHPUnit runner.php
 --EXPECTF--
 PHPUnit %s
 
-100% . [32;1mScriptFUSIONTest\PHPUnitImmediateExceptionPrinter\CapabilitiesTest::testSuccess[0m[32m (%d ms)[0m
+Runtime: %s
+Configuration: %s
+
+100% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccess[0m [32m(%d ms)[0m
 
 
 Time: %s
