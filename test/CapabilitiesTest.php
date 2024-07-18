@@ -57,16 +57,19 @@ final class CapabilitiesTest extends TestCase
 
     public function testWarning(): void
     {
-        // zend.assertions may be completely enabled or disabled only in php.ini.
-        ini_set('zend.assertions', -1);
+        // foreach() argument must be of type array|object.
+        foreach (1 as $n) {}
 
         self::assertTrue(true);
     }
 
     public function testDeprecation(): void
     {
-        // Creation of dynamic property is deprecated.
-        $this->foo = 'foo';
+        // Serializable interface is deprecated.
+        new class implements \Serializable {
+            function serialize() {}
+            function unserialize(string $data) {}
+        };
 
         self::assertTrue(true);
     }
