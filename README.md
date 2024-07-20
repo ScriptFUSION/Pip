@@ -6,7 +6,7 @@ PHPUnit Immediate Printer (Pip)
 [![Build status][Build image]][Build]
 [![Test coverage][Coverage image]][Coverage]
 
-Pip a [PHPUnit][] extension that prints exceptions and assertion failures immediately during a test run. Normally PHPUnit keeps failure details secret until the end of the test run, but sometimes we don't want to wait that long. With Pip, all secrets are immediately revealed, with a few extra benefits, too.
+Pip is a [PHPUnit][] extension that prints exceptions and assertion failures immediately during a test run. Normally PHPUnit keeps failure details secret until the end of the test run, but sometimes we don't want to wait that long. With Pip, all secrets are immediately revealed, with a few extra benefits, too.
 
 ## Benefits
 
@@ -17,9 +17,9 @@ Pip a [PHPUnit][] extension that prints exceptions and assertion failures immedi
 
 ## Preview
 
-The following preview is somewhat atypical but shows all supported output cases.
+The following preview is somewhat atypical but shows all supported output cases at once.
 
-![Preview image](https://raw.githubusercontent.com/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/master/doc/images/test%20run%201.3.png)
+![Preview image][]
 
 This printer makes no attempt to modify the test summary; only runtime output is changed.
 
@@ -90,5 +90,7 @@ Thanks to the following open source projects that inspired this project. Keep be
   [Build image]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Printer/actions/workflows/Test.yaml/badge.svg "Build status"
   [Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Printer
   [Coverage image]: https://codecov.io/github/ScriptFUSION/PHPUnit-Immediate-Printer/graph/badge.svg "Test coverage"
+
+  [Preview image]: https://raw.githubusercontent.com/ScriptFUSION/PHPUnit-Immediate-Printer/master/doc/images/test%20run%203.0.webp
 
   [PHPUnit]: https://github.com/sebastianbergmann/phpunit
