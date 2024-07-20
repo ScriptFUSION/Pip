@@ -18,6 +18,12 @@ jobs:
           - 8.1
           - 8.2
           - 8.3
+        phpunit:
+          - 10
+          - 11
+        exclude:
+          - php: 8.1
+            phpunit: 11
 
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +34,10 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: pcov
 
+      - name: Filter PHPUnit version constraint
+        run: 'sed -i ''s/\("phpunit\/phpunit" *: *\)\("\||\).*\(\^${{ matrix.phpunit }}\b[^|"]*\)\(|\|"\).*/\1"\3"/''
+          composer.json'
+
       - name: Validate composer.json
         run: composer validate
 
@@ -36,7 +46,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: vendor
-          key: php-${{ matrix.php }}
+          key: php-${{ matrix.php }}-${{ matrix.phpunit }}
 
       - name: Install dependencies
         run: composer update --no-interaction --no-progress

@@ -1,6 +1,7 @@
 <?php
 namespace ScriptFUSIONTest\Pip;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -74,9 +75,8 @@ final class CapabilitiesTest extends TestCase
         self::assertTrue(true);
     }
 
-    /**
-     * @dataProvider provideData
-     */
+    #[DataProvider('provideData')]
+
     public function testDataProvider(): void
     {
         self::assertTrue(true);
@@ -90,9 +90,7 @@ final class CapabilitiesTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider provideSuccessesAndFailures
-     */
+    #[DataProvider('provideSuccessesAndFailures')]
     public function testSuccessAfterFailure($bool): void
     {
         self::assertTrue($bool);
