@@ -1,10 +1,14 @@
-PHPUnit Immediate Printer (Pip)
-===============================
+<p align="center"><img src="doc/images/logo.webp" width="350"></p>
+<div align="center">
 
 [![Latest version][Version image]][Releases]
 [![Total downloads][Downloads image]][Downloads]
 [![Build status][Build image]][Build]
 [![Test coverage][Coverage image]][Coverage]
+</div>
+
+PHPUnit Immediate Printer
+=========================
 
 Pip is a [PHPUnit][] extension that prints exceptions and assertion failures immediately during a test run. Normally PHPUnit keeps failure details secret until the end of the test run, but sometimes we don't want to wait that long. With Pip, all secrets are immediately revealed, with a few extra benefits, too.
 
