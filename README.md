@@ -1,4 +1,4 @@
-<p align="center"><img src="doc/images/logo.webp" width="350"></p>
+<p align="center"><img src="doc/images/logo.webp" alt="Pip" width="350"></p>
 <div align="center">
 
 [![Latest version][Version image]][Releases]
@@ -10,18 +10,18 @@
 PHPUnit Immediate Printer
 =========================
 
-Pip is a [PHPUnit][] extension that prints exceptions and assertion failures immediately during a test run. Normally PHPUnit keeps failure details secret until the end of the test run, but sometimes we don't want to wait that long. With Pip, all secrets are immediately revealed, with a few extra benefits, too.
+Pip is a [PHPUnit][] extension that immediately prints exceptions and assertion failures during a test run. Normally PHPUnit keeps failure details secret until the end of the test run, but sometimes we don't want to wait that long. With Pip, all secrets are immediately revealed, with a few extra benefits, too.
 
 ## Benefits
 
-* Immediately print out exceptions and assertion failures as they occur.
-* Flawless test suite indicator: success dot turns to red exclamation mark if any prior tests failed.
-* Display the execution time of each test in tiered colour bands.
 * Display the name of each test case as it is executed.
+* Display the execution time of each test in tiered colour bands.
+* Immediately print exceptions and assertion failures as they occur.
+* Flawless test suite indicator: success dot turns to red exclamation mark if any prior tests failed. Useful for CI consoles without a scrollback buffer.
 
 ## Preview
 
-The following preview is somewhat atypical but shows all supported output cases at once.
+The following preview is somewhat atypical but shows all supported output cases at once. Of course, we expect all *your* tests to be green!
 
 ![Preview image][]
 
@@ -53,7 +53,11 @@ This printer makes no attempt to modify the test summary; only runtime output is
 
 ## Requirements
 
-* [PHPUnit][] 10.
+| Pip version | PHPUnit versions | Minimum PHP |
+|:-----------:|:----------------:|:-----------:|
+|      3      |     10 / 11      |  8.1 / 8.2  |
+|      2      |     *yanked*     |      -      |
+|      1      |      5 / 6       |  5.6 / 7.0  |
 
 ## Testing
 
