@@ -1,13 +1,12 @@
-PHPUnit Immediate Printer
-=========================
+PHPUnit Immediate Printer (Pip)
+===============================
 
 [![Latest version][Version image]][Releases]
 [![Total downloads][Downloads image]][Downloads]
 [![Build status][Build image]][Build]
 [![Test coverage][Coverage image]][Coverage]
-[![Code style][Style image]][Style]
 
-PHPUnit Immediate Printer (Pip) is a [PHPUnit][] extension that prints exceptions and assertion failures immediately during a test run. Normally PHPUnit keeps failure details secret until the end of the test run, but sometimes we don't want to wait that long. With Pip, all secrets are immediately revealed, with a few extra benefits, too.
+Pip a [PHPUnit][] extension that prints exceptions and assertion failures immediately during a test run. Normally PHPUnit keeps failure details secret until the end of the test run, but sometimes we don't want to wait that long. With Pip, all secrets are immediately revealed, with a few extra benefits, too.
 
 ## Benefits
 
@@ -83,15 +82,13 @@ Thanks to the following open source projects that inspired this project. Keep be
 * [skyzyx/phpunit-result-printer](https://github.com/skyzyx/phpunit-result-printer) &ndash; Design.
 
 
-  [Releases]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/releases
-  [Version image]: https://poser.pugx.org/scriptfusion/phpunit-immediate-exception-printer/version "Latest version"
-  [Downloads]: https://packagist.org/packages/scriptfusion/phpunit-immediate-exception-printer
-  [Downloads image]: https://poser.pugx.org/scriptfusion/phpunit-immediate-exception-printer/downloads "Total downloads"
-  [Build]: https://travis-ci.org/ScriptFUSION/PHPUnit-Immediate-Exception-Printer
-  [Build image]: https://travis-ci.org/ScriptFUSION/PHPUnit-Immediate-Exception-Printer.svg?branch=master "Build status"
-  [Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Exception-Printer
-  [Coverage image]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Exception-Printer/branch/master/graphs/badge.svg "Test coverage"
-  [Style]: https://styleci.io/repos/83920053
-  [Style image]: https://styleci.io/repos/83920053/shield?style=flat "Code style"
+  [Releases]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Printer/releases
+  [Version image]: https://poser.pugx.org/scriptfusion/pip/version "Latest version"
+  [Downloads]: https://packagist.org/packages/scriptfusion/pip
+  [Downloads image]: https://poser.pugx.org/scriptfusion/pip/downloads "Total downloads"
+  [Build]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Printer/actions/workflows/Test.yaml
+  [Build image]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Printer/actions/workflows/Test.yaml/badge.svg "Build status"
+  [Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Printer
+  [Coverage image]: https://codecov.io/github/ScriptFUSION/PHPUnit-Immediate-Printer/graph/badge.svg "Test coverage"
 
   [PHPUnit]: https://github.com/sebastianbergmann/phpunit
