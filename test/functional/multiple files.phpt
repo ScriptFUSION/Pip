@@ -5,7 +5,7 @@ Tests that multiple files tested together are counted correctly.
 -c test --colors=always test/multi
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

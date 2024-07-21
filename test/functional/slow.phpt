@@ -5,7 +5,7 @@ Tests that when a test takes more than 200ms to complete, its timer output is sh
 -c test --colors=always test/CapabilitiesTest.php --filter ::testSlow$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

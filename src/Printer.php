@@ -23,11 +23,7 @@ use PHPUnit\Util\Color;
 
 final class Printer implements Tracer
 {
-    private array $performanceThresholds = [
-        'red' => 1000,
-        'yellow' => 200,
-        'green' => 0,
-    ];
+    private readonly array $performanceThresholds;
 
     private int $totalTests;
 
@@ -40,6 +36,15 @@ final class Printer implements Tracer
     private ?Throwable $throwable = null;
 
     private bool $flawless = true;
+
+    public function __construct(private readonly PipConfig $config)
+    {
+        $this->performanceThresholds = [
+            'red' => $config->perfVslow,
+            'yellow' => $config->perfSlow,
+            'green' => 0,
+        ];
+    }
 
     public function trace(Event $event): void
     {

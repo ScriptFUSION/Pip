@@ -7,6 +7,7 @@
   <testsuites>
     <testsuite name="Default">
       <directory suffix=".phpt">functional</directory>
+      <directory suffix=".phpt">config</directory>
     </testsuite>
   </testsuites>
 

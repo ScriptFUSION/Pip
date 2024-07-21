@@ -5,7 +5,7 @@ An assertion fails.
 -c test --colors=always test/CapabilitiesTest.php --filter ::testFailure$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

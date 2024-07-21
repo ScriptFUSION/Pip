@@ -5,7 +5,7 @@ A test is marked "incomplete".
 -c test --colors=always test/CapabilitiesTest.php --filter ::testIncomplete$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

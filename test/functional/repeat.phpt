@@ -8,7 +8,7 @@ An successful test is repeated 80 times.
 -c test --colors=always test/CapabilitiesTest.php --filter ::testSuccess$ --repeat 80
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

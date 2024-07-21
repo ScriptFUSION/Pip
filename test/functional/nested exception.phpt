@@ -5,7 +5,7 @@ An exception containing another exception is thrown by another class.
 -c test --colors=always test/CapabilitiesTest.php --filter ::testNestedException$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

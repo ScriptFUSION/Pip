@@ -1,0 +1,8 @@
+<phpunit>
+  <extensions>
+    <bootstrap class="ScriptFUSION\Pip\PipExtension">
+      <parameter name="perf.slow" value="300"/>
+      <parameter name="perf.vslow" value="600"/>
+    </bootstrap>
+  </extensions>
+</phpunit>

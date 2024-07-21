@@ -5,7 +5,7 @@ A test is marked "notice".
 -c test --colors=always test/CapabilitiesTest.php --filter ::testNotice$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

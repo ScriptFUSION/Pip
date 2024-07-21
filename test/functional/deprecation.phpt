@@ -5,7 +5,7 @@ A test is marked "deprecated".
 -c test --colors=always test/CapabilitiesTest.php --filter ::testDeprecation$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

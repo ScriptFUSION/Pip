@@ -5,7 +5,7 @@ Tests that when a test takes more than 1s to complete, its timer output is shown
 -c test --colors=always test/CapabilitiesTest.php --filter ::testGigaSlow$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

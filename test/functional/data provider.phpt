@@ -5,7 +5,7 @@ A successful test is fed two cases by a data provider.
 -c test --colors=always test/CapabilitiesTest.php --filter '::testDataProvider\h'
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

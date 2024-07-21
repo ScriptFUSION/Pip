@@ -5,7 +5,7 @@ Successful tests following a failure have coloured progress marker.
 -c test --colors=always test/CapabilitiesTest.php --filter '::testSuccessAfterFailure\h'
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

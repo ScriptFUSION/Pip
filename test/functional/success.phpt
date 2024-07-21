@@ -5,7 +5,7 @@ An assertion succeeds.
 -c test --colors=always test/CapabilitiesTest.php --filter ::testSuccess$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

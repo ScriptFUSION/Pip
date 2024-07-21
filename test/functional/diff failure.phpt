@@ -5,7 +5,7 @@ An assertion fails and produces a diff.
 -c test --colors=always test/CapabilitiesTest.php --filter ::testDiffFailure$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

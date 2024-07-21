@@ -25,7 +25,7 @@ The following preview is somewhat atypical but shows all supported output cases 
 
 ![Preview image][]
 
-This printer makes no attempt to modify the test summary; only runtime output is changed.
+Pip makes no attempt to modify the test summary; only runtime output is changed.
 
 ## Usage
 
@@ -51,13 +51,22 @@ This printer makes no attempt to modify the test summary; only runtime output is
 
 4. Enjoy immediate test execution feedback.
 
+### Configuration
+
+Pip's behaviour can be customized by adding `<parameter>` nodes as children of the `<bootstrap>` node in `phpunit.xml`, with `name` and `value` attributes corresponding to the table below.
+
+| Parameter name | Default value | Comments                                         |
+|----------------|---------------|--------------------------------------------------|
+| perf.slow      | 200 (ms)      | _Slow_ performance threshold (shown in yellow)   |
+| perf.vslow     | 1000 (ms)     | _Very slow_ performance threshold (shown in red) |
+
 ## Requirements
 
-| Pip version | PHPUnit versions | Minimum PHP |
-|:-----------:|:----------------:|:-----------:|
-|      3      |     10 / 11      |  8.1 / 8.2  |
-|      2      |     *yanked*     |      -      |
-|      1      |      5 / 6       |  5.6 / 7.0  |
+| Pip version | PHPUnit versions | Minimum PHP version |
+|:-----------:|:----------------:|:-------------------:|
+|      3      |     10 / 11      |      8.1 / 8.2      |
+|      2      |     *yanked*     |          -          |
+|      1      |      5 / 6       |      5.6 / 7.0      |
 
 ## Testing
 
@@ -94,8 +103,8 @@ Thanks to the following open source projects that inspired this project. Keep be
   [Version image]: https://poser.pugx.org/scriptfusion/pip/version "Latest version"
   [Downloads]: https://packagist.org/packages/scriptfusion/pip
   [Downloads image]: https://poser.pugx.org/scriptfusion/pip/downloads "Total downloads"
-  [Build]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Printer/actions/workflows/Test.yaml
-  [Build image]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Printer/actions/workflows/Test.yaml/badge.svg "Build status"
+  [Build]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Printer/actions/workflows/Tests.yaml
+  [Build image]: https://github.com/ScriptFUSION/PHPUnit-Immediate-Printer/actions/workflows/Tests.yaml/badge.svg "Build status"
   [Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Printer
   [Coverage image]: https://codecov.io/github/ScriptFUSION/PHPUnit-Immediate-Printer/graph/badge.svg "Test coverage"
 

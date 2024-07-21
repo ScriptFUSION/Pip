@@ -5,7 +5,7 @@ A test is skipped.
 -c test --colors=always test/CapabilitiesTest.php --filter ::testSkipped$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

@@ -5,7 +5,7 @@ An exception is thrown in the test case.
 -c test --colors=always test/CapabilitiesTest.php --filter ::testException$
 
 --FILE_EXTERNAL--
-PHPUnit runner.php
+../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s
