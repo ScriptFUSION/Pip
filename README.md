@@ -55,10 +55,10 @@ Pip makes no attempt to modify the test summary; only runtime output is changed.
 
 Pip's behaviour can be customized by adding `<parameter>` nodes as children of the `<bootstrap>` node in `phpunit.xml`, with `name` and `value` attributes corresponding to the table below.
 
-| Parameter name | Default value | Comments                                         |
-|----------------|---------------|--------------------------------------------------|
-| perf.slow      | 200 (ms)      | _Slow_ performance threshold (shown in yellow)   |
-| perf.vslow     | 1000 (ms)     | _Very slow_ performance threshold (shown in red) |
+| Parameter name | Default value | Description                                                |
+|----------------|---------------|------------------------------------------------------------|
+| perf.slow      | 200 (ms)      | Sets the performance threshold for _slow_ (yellow) tests   |
+| perf.vslow     | 1000 (ms)     | Sets the performance threshold for _very slow_ (red) tests |
 
 ## Requirements
 
@@ -92,7 +92,7 @@ Create a new functional test by copying an existing test as a template, then mod
 
 ## Inspiration
 
-Thanks to the following open source projects that inspired this project. Keep being awesome :thumbsup:.
+Thanks to the following open source projects that inspired this project.
 
 * [diablomedia/phpunit-pretty-printer](https://github.com/diablomedia/phpunit-pretty-printer) &ndash; Design and implementation.
 * [whatthejeff/nyancat-phpunit-resultprinter](https://github.com/whatthejeff/nyancat-phpunit-resultprinter) &ndash; Testing.
@@ -108,6 +108,6 @@ Thanks to the following open source projects that inspired this project. Keep be
   [Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Printer
   [Coverage image]: https://codecov.io/github/ScriptFUSION/PHPUnit-Immediate-Printer/graph/badge.svg "Test coverage"
 
-  [Preview image]: https://raw.githubusercontent.com/ScriptFUSION/PHPUnit-Immediate-Printer/master/doc/images/test%20run%203.0.webp
+  [Preview image]: doc/images/test%20run%203.2.webp
 
   [PHPUnit]: https://github.com/sebastianbergmann/phpunit
