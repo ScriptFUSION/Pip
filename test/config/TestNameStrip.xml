@@ -1,0 +1,7 @@
+<phpunit>
+  <extensions>
+    <bootstrap class="ScriptFUSION\Pip\PipExtension">
+      <parameter name="test.name.strip" value="ScriptFUSIONTest\Pip\"/>
+    </bootstrap>
+  </extensions>
+</phpunit>

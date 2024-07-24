@@ -55,10 +55,11 @@ Pip makes no attempt to modify the test summary; only runtime output is changed.
 
 Pip's behaviour can be customized by adding `<parameter>` nodes as children of the `<bootstrap>` node in `phpunit.xml`, with `name` and `value` attributes corresponding to the table below.
 
-| Parameter name | Default value | Description                                                |
-|----------------|---------------|------------------------------------------------------------|
-| perf.slow      | 200 (ms)      | Sets the performance threshold for _slow_ (yellow) tests   |
-| perf.vslow     | 1000 (ms)     | Sets the performance threshold for _very slow_ (red) tests |
+| Parameter name  | Default value | Description                                                |
+|-----------------|---------------|------------------------------------------------------------|
+| perf.slow       | 200 (ms)      | Sets the performance threshold for _slow_ (yellow) tests   |
+| perf.vslow      | 1000 (ms)     | Sets the performance threshold for _very slow_ (red) tests |
+| test.name.strip | ''            | Strips the specified matching portion of the test name     |
 
 ## Requirements
 

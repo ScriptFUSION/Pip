@@ -15,6 +15,7 @@ final class PipExtension implements Extension
         $config = new PipConfig();
         $parameters->has('perf.slow') && $config->perfSlow = +$parameters->get('perf.slow');
         $parameters->has('perf.vslow') && $config->perfVslow = +$parameters->get('perf.vslow');
+        $parameters->has('test.name.strip') && $config->testNameStrip = $parameters->get('test.name.strip');
 
         $facade->registerTracer(new Printer($config));
         $facade->replaceProgressOutput();

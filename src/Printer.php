@@ -95,6 +95,9 @@ final class Printer implements Tracer
 
         if ($event instanceof Finished) {
             $id = $event->test()->id();
+            if ($this->config->testNameStrip !== '') {
+                $id = str_replace($this->config->testNameStrip, '', $id);
+            }
 
             // Data provider case.
             if ($event->test()->isTestMethod() && $event->test()->testData()->hasDataFromDataProvider()) {
