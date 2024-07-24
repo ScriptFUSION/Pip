@@ -102,7 +102,15 @@ final class Printer implements Tracer
             // Data provider case.
             if ($event->test()->isTestMethod() && $event->test()->testData()->hasDataFromDataProvider()) {
                 $id = substr($id, 0, strrpos($id, '#'));
-                $id .= $event->test()->testData()->dataFromDataProvider()->dataAsStringForResultOutput();
+
+                $data = $event->test()->testData()->dataFromDataProvider()->dataAsStringForResultOutput();
+                if (!$this->config->testDpArgs) {
+                    $data = substr($data, 0, 17 + strlen(
+                        $event->test()->testData()->dataFromDataProvider()->dataSetName())
+                    );
+                }
+
+                $id .= $data;
             }
 
             $ms = round($event->telemetryInfo()->time()->duration($this->start)->asFloat() * 1_000);

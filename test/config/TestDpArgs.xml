@@ -1,0 +1,7 @@
+<phpunit>
+  <extensions>
+    <bootstrap class="ScriptFUSION\Pip\PipExtension">
+      <parameter name="test.dp.args" value="false"/>
+    </bootstrap>
+  </extensions>
+</phpunit>
