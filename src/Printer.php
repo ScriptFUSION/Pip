@@ -105,9 +105,8 @@ final class Printer implements Tracer
 
                 $data = $event->test()->testData()->dataFromDataProvider()->dataAsStringForResultOutput();
                 if (!$this->config->testDpArgs) {
-                    $data = substr($data, 0, 17 + strlen(
-                        $event->test()->testData()->dataFromDataProvider()->dataSetName())
-                    );
+                    $dsn = $event->test()->testData()->dataFromDataProvider()->dataSetName();
+                    $data = substr($data, 0, (is_int($dsn) ? 16 : 17) + strlen((string)$dsn));
                 }
 
                 $id .= $data;

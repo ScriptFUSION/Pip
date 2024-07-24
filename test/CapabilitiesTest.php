@@ -86,7 +86,7 @@ final class CapabilitiesTest extends TestCase
     {
         return [
             'foo' => ['bar'],
-            'baz' => ['qux'],
+            ['baz'],
         ];
     }
 
