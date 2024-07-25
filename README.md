@@ -110,6 +110,6 @@ Thanks to the following open source projects that inspired this project.
   [Coverage]: https://codecov.io/gh/ScriptFUSION/PHPUnit-Immediate-Printer
   [Coverage image]: https://codecov.io/github/ScriptFUSION/PHPUnit-Immediate-Printer/graph/badge.svg "Test coverage"
 
-  [Preview image]: doc/images/test%20run%203.2.webp
+  [Preview image]: doc/images/test%20run%203.4.webp
 
   [PHPUnit]: https://github.com/sebastianbergmann/phpunit
