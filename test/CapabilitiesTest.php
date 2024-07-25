@@ -39,13 +39,13 @@ final class CapabilitiesTest extends TestCase
         self::markTestSkipped();
     }
 
-    public function testRisky(): void
-    {
-    }
-
     public function testIncomplete(): void
     {
         self::markTestIncomplete();
+    }
+
+    public function testRisky(): void
+    {
     }
 
     public function testNotice(): void
@@ -106,10 +106,14 @@ final class CapabilitiesTest extends TestCase
     public function testSlow(): void
     {
         usleep(200_000);
+
+        self::assertTrue(true);
     }
 
     public function testGigaSlow(): void
     {
         sleep(1);
+
+        self::assertTrue(true);
     }
 }

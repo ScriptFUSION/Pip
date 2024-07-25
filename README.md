@@ -35,7 +35,7 @@ Pip makes no attempt to modify the test summary; only runtime output is changed.
     composer require --dev scriptfusion/pip
     ```
 
-2. Declare the printer class in your `phpunit.xml` configuration file.
+2. Declare the printer extension in your `phpunit.xml` configuration file.
 
     ```xml
     <extensions>

@@ -35,6 +35,8 @@ final class Printer implements Tracer
 
     private ?Throwable $throwable = null;
 
+    private ?Trace $trace = null;
+
     private bool $flawless = true;
 
     public function __construct(private readonly PipConfig $config)
@@ -60,15 +62,15 @@ final class Printer implements Tracer
             $this->status ??= $this->flawless ? TestStatus::Passed : TestStatus::Flawed;
         }
         if ($event instanceof Failed) {
-            $this->throwable = $event->throwable();
-
             $this->status ??= TestStatus::Failed;
+
+            $this->throwable = $event->throwable();
             $this->flawless = false;
         }
         if ($event instanceof Errored) {
-            $this->throwable = $event->throwable();
-
             $this->status ??= TestStatus::Errored;
+
+            $this->throwable = $event->throwable();
             $this->flawless = false;
         }
         if ($event instanceof Skipped) {
@@ -82,15 +84,23 @@ final class Printer implements Tracer
             if ($this->status === TestStatus::Passed || $this->status === TestStatus::Flawed) {
                 $this->status = TestStatus::Risky;
             }
+
+            $this->trace = new Trace($event->message(), $event->test()->file(), $event->test()->line());
         }
         if ($event instanceof PhpNoticeTriggered) {
             $this->status ??= TestStatus::Notice;
+
+            $this->trace = Trace::fromEvent($event);
         }
         if ($event instanceof PhpWarningTriggered) {
             $this->status ??= TestStatus::Warning;
+
+            $this->trace = Trace::fromEvent($event);
         }
         if ($event instanceof PhpDeprecationTriggered) {
             $this->status ??= TestStatus::Deprecated;
+
+            $this->trace = Trace::fromEvent($event);
         }
 
         if ($event instanceof Finished) {
@@ -151,6 +161,19 @@ final class Printer implements Tracer
                 } else {
                     $this->throwable = null;
                 }
+            }
+
+            if ($this->trace) {
+                printf(
+                    Color::colorize("fg-{$this->status->getColour()}", '%s%s: %s in %s on line %s%1$s%1$s'),
+                    PHP_EOL,
+                    $this->status->name,
+                    $this->trace->message,
+                    $this->trace->file,
+                    $this->trace->line
+                );
+
+                $this->trace = null;
             }
 
             $this->status = null;

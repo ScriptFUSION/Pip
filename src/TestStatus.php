@@ -44,9 +44,9 @@ enum TestStatus
     public function getColour(): string
     {
         return match ($this) {
-            self::Passed => 'green,bold',
+            self::Passed,
             self::Flawed => 'green,bold',
-            self::Failed => 'red,bold',
+            self::Failed,
             self::Errored => 'red,bold',
             self::Skipped => 'cyan,bold',
             self::Incomplete,
