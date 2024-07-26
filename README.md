@@ -16,12 +16,12 @@ Pip is a [PHPUnit][] extension that immediately prints exceptions and assertion 
 
 * Display the name of each test case as it is executed.
 * Display the execution time of each test in tiered colour bands.
-* Immediately print exceptions and assertion failures as they occur.
+* Immediately print exceptions, assertion failures, warnings, notice and deprecation messages as they occur.
 * Flawless test suite indicator: success dot turns to red exclamation mark if any prior tests failed. Useful for CI consoles without a scrollback buffer.
 
 ## Preview
 
-The following preview is somewhat atypical but shows all supported output cases at once. Of course, we expect all *your* tests to be green!
+The following preview is somewhat atypical but shows all supported output cases at once. Of course, we expect all *your* tests to be mostly green!
 
 ![Preview image][]
 
@@ -70,7 +70,7 @@ Pip's behaviour can be customized by adding `<parameter>` nodes as children of t
 |      2      |     *yanked*     |          -          |
 |      1      |      5 / 6       |      5.6 / 7.0      |
 
-## Testing
+## Testing Pip
 
 The printer's capabilities are exploited via `CapabilitiesTest`. However, this test file isn't run directly because many of these tests are designed to fail. Instead, we write tests that run PHPUnit internally, each of which invokes one of the capability test cases and verifies its output.
 
