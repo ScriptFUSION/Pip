@@ -19,7 +19,6 @@ use PHPUnit\Event\Test\Prepared;
 use PHPUnit\Event\Test\Skipped;
 use PHPUnit\Event\TestRunner\ExecutionStarted;
 use PHPUnit\Event\Tracer\Tracer;
-use PHPUnit\Util\Color;
 
 final class Printer implements Tracer
 {
@@ -122,61 +121,25 @@ final class Printer implements Tracer
                 $id .= $data;
             }
 
-            $ms = round($event->telemetryInfo()->time()->duration($this->start)->asFloat() * 1_000);
+            $ms = round($event->telemetryInfo()->time()->duration($this->start)->asFloat() * 1_000)|0;
             foreach ($this->performanceThresholds as $colour => $threshold) {
                 if ($ms >= $threshold) {
                     break;
                 }
             }
 
-            printf(
-                "%3d%% %s %s %s%s",
-                floor(++$this->testCounter / $this->totalTests * 100),
-                $this->status->getStatusColour() === ''
-                    ? $this->status->getStatusCode()
-                    : Color::colorize("fg-{$this->status->getStatusColour()}", $this->status->getStatusCode()),
-                Color::colorize("fg-{$this->status->getColour()}", $id),
-                Color::colorize("fg-$colour", "($ms ms)"),
-                PHP_EOL,
-            );
+            $this->config->theme->onTestFinished(new TestResult(
+                $id,
+                $this->status,
+                $this->totalTests,
+                ++$this->testCounter,
+                $ms,
+                $colour,
+                $this->throwable,
+                $this->trace,
+            ));
 
-            if ($this->status === TestStatus::Failed) {
-                echo PHP_EOL, Color::colorize('fg-red', $this->throwable->description()), PHP_EOL,
-                    Color::colorize('fg-red', $this->throwable->stackTrace()), PHP_EOL
-                ;
-
-                $this->throwable = null;
-            }
-
-            while ($this->status === TestStatus::Errored && $this->throwable) {
-                echo PHP_EOL, Color::colorize('fg-white,bg-red', " {$this->throwable->className()} "), ' ',
-                    Color::colorize('fg-red', $this->throwable->message()), PHP_EOL, PHP_EOL,
-                    Color::colorize('fg-red', $this->throwable->stackTrace()), PHP_EOL
-                ;
-
-                if ($this->throwable->hasPrevious()) {
-                    echo Color::colorize('fg-red', 'Caused by');
-
-                    $this->throwable = $this->throwable->previous();
-                } else {
-                    $this->throwable = null;
-                }
-            }
-
-            if ($this->trace) {
-                printf(
-                    Color::colorize("fg-{$this->status->getColour()}", '%s%s: %s in %s on line %s%1$s%1$s'),
-                    PHP_EOL,
-                    $this->status->name,
-                    $this->trace->message,
-                    $this->trace->file,
-                    $this->trace->line
-                );
-
-                $this->trace = null;
-            }
-
-            $this->status = null;
+            $this->trace = $this->throwable = $this->status = null;
         }
 
         if ($event instanceof \PHPUnit\Event\TestRunner\Finished) {
