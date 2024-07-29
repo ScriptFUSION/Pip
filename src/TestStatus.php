@@ -15,45 +15,4 @@ enum TestStatus
     case Notice;
     case Warning;
     case Deprecated;
-
-    public function getStatusCode(): string
-    {
-        return match ($this) {
-            self::Passed => '.',
-            self::Flawed => '!',
-            self::Failed => 'F',
-            self::Errored => 'E',
-            self::Skipped => 'S',
-            self::Incomplete => 'I',
-            self::Risky => 'R',
-            self::Notice => 'N',
-            self::Warning => 'W',
-            self::Deprecated => 'D',
-        };
-    }
-
-    public function getStatusColour(): string
-    {
-        return match ($this) {
-            self::Passed => '',
-            self::Flawed => 'red',
-            default => $this->getColour(),
-        };
-    }
-
-    public function getColour(): string
-    {
-        return match ($this) {
-            self::Passed,
-            self::Flawed => 'green,bold',
-            self::Failed,
-            self::Errored => 'red,bold',
-            self::Skipped => 'cyan,bold',
-            self::Incomplete,
-            self::Risky,
-            self::Notice,
-            self::Warning,
-            self::Deprecated, => 'yellow,bold',
-        };
-    }
 }

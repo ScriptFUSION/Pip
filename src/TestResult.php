@@ -13,7 +13,7 @@ final class TestResult
         public readonly int $totalTests,
         public readonly int $testCounter,
         public readonly int $testDurationMs,
-        public readonly string $testDurationColour,
+        public readonly TestPerformance $testPerformance,
         public readonly ?Throwable $throwable,
         public readonly ?Trace $trace,
     ) {

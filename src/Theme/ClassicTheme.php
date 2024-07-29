@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ScriptFUSION\Pip\Theme;
 
 use PHPUnit\Util\Color;
+use ScriptFUSION\Pip\TestPerformance;
 use ScriptFUSION\Pip\TestResult;
 use ScriptFUSION\Pip\TestStatus;
 
@@ -14,11 +15,14 @@ final class ClassicTheme implements Theme
         printf(
             "%3d%% %s %s %s%s",
             $result->calculateProgressPercentage(),
-            $result->status->getStatusColour() === ''
-                ? $result->status->getStatusCode()
-                : Color::colorize("fg-{$result->status->getStatusColour()}", $result->status->getStatusCode()),
-            Color::colorize("fg-{$result->status->getColour()}", $result->id),
-            Color::colorize("fg-$result->testDurationColour", "($result->testDurationMs ms)"),
+            ($statusColour = self::getStatusColour($result->status)) === ''
+                ? self::getStatusCode($result->status)
+                : Color::colorize("fg-$statusColour", self::getStatusCode($result->status)),
+            Color::colorize("fg-" . self::getColour($result->status), $result->id),
+            Color::colorize(
+                'fg-' . self::getPeformanceColour($result->testPerformance),
+                "($result->testDurationMs ms)"
+            ),
             PHP_EOL,
         );
 
@@ -44,7 +48,7 @@ final class ClassicTheme implements Theme
 
         if ($result->trace) {
             printf(
-                Color::colorize("fg-{$result->status->getColour()}", '%s%s: %s in %s on line %s%1$s%1$s'),
+                Color::colorize("fg-$statusColour", '%s%s: %s in %s on line %s%1$s%1$s'),
                 PHP_EOL,
                 $result->status->name,
                 $result->trace->message,
@@ -52,5 +56,48 @@ final class ClassicTheme implements Theme
                 $result->trace->line,
             );
         }
+    }
+
+    private static function getStatusCode(TestStatus $status): string
+    {
+        return match ($status) {
+            TestStatus::Passed => '.',
+            TestStatus::Flawed => '!',
+            default => $status->name[0],
+        };
+    }
+
+    private static function getStatusColour(TestStatus $status): string
+    {
+        return match ($status) {
+            TestStatus::Passed => '',
+            TestStatus::Flawed => 'red',
+            default => self::getColour($status),
+        };
+    }
+
+    private static function getColour(TestStatus $status): string
+    {
+        return match ($status) {
+            TestStatus::Passed,
+            TestStatus::Flawed => 'green,bold',
+            TestStatus::Failed,
+            TestStatus::Errored => 'red,bold',
+            TestStatus::Skipped => 'cyan,bold',
+            TestStatus::Incomplete,
+            TestStatus::Risky,
+            TestStatus::Notice,
+            TestStatus::Warning,
+            TestStatus::Deprecated, => 'yellow,bold',
+        };
+    }
+
+    private static function getPeformanceColour(TestPerformance $performance): string
+    {
+        return match ($performance) {
+            TestPerformance::OK => 'green',
+            TestPerformance::Slow => 'yellow',
+            TestPerformance::VerySlow => 'red',
+        };
     }
 }

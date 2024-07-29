@@ -22,8 +22,6 @@ use PHPUnit\Event\Tracer\Tracer;
 
 final class Printer implements Tracer
 {
-    private readonly array $performanceThresholds;
-
     private int $totalTests;
 
     private int $testCounter = 0;
@@ -40,11 +38,6 @@ final class Printer implements Tracer
 
     public function __construct(private readonly PipConfig $config)
     {
-        $this->performanceThresholds = [
-            'red' => $config->perfVslow,
-            'yellow' => $config->perfSlow,
-            'green' => 0,
-        ];
     }
 
     public function trace(Event $event): void
@@ -122,11 +115,11 @@ final class Printer implements Tracer
             }
 
             $ms = round($event->telemetryInfo()->time()->duration($this->start)->asFloat() * 1_000)|0;
-            foreach ($this->performanceThresholds as $colour => $threshold) {
-                if ($ms >= $threshold) {
-                    break;
-                }
-            }
+            $performance = match (true) {
+                $ms >= $this->config->perfVslow => TestPerformance::VerySlow,
+                $ms >= $this->config->perfSlow => TestPerformance::Slow,
+                default => TestPerformance::OK,
+            };
 
             $this->config->theme->onTestFinished(new TestResult(
                 $id,
@@ -134,7 +127,7 @@ final class Printer implements Tracer
                 $this->totalTests,
                 ++$this->testCounter,
                 $ms,
-                $colour,
+                $performance,
                 $this->throwable,
                 $this->trace,
             ));
