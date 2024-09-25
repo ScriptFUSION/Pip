@@ -13,10 +13,11 @@ final class Trace
         public readonly string $message,
         public readonly string $file,
         public readonly int $line,
+        public readonly bool $suppressed = false,
     ) {}
 
     public static function fromEvent(PhpWarningTriggered|PhpNoticeTriggered|PhpDeprecationTriggered $event): self
     {
-        return new self($event->message(), $event->file(), $event->line());
+        return new self($event->message(), $event->file(), $event->line(), $event->wasSuppressed());
     }
 }

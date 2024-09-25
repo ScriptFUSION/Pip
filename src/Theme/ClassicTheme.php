@@ -46,7 +46,7 @@ final class ClassicTheme implements Theme
             $throwable = $throwable->previous();
         }
 
-        if ($result->trace) {
+        if ($result->trace && !$result->trace->suppressed) {
             printf(
                 Color::colorize("fg-$statusColour", '%s%s: %s in %s on line %s%1$s%1$s'),
                 PHP_EOL,

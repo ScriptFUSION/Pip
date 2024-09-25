@@ -64,6 +64,13 @@ final class CapabilitiesTest extends TestCase
         self::assertTrue(true);
     }
 
+    public function testSilencedWarning(): void
+    {
+        $foo = @$bar;
+
+        self::assertTrue(true);
+    }
+
     public function testDeprecation(): void
     {
         // Serializable interface is deprecated.
