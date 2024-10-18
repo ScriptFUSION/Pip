@@ -13,7 +13,7 @@ PHPUnit %s
 Runtime: %s
 Configuration: %s
 
-100% [33;1mW[0m [33;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSilencedWarning[0m [32m(%d ms)[0m
+100% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSilencedWarning[0m [32m(%d ms)[0m
 
 
 Time: %s

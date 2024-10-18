@@ -85,7 +85,9 @@ final class Printer implements Tracer
             $this->trace = Trace::fromEvent($event);
         }
         if ($event instanceof PhpWarningTriggered) {
-            $this->status ??= TestStatus::Warning;
+            if (!$event->wasSuppressed()) {
+                $this->status ??= TestStatus::Warning;
+            }
 
             $this->trace = Trace::fromEvent($event);
         }
