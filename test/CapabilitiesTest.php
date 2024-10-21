@@ -56,6 +56,14 @@ final class CapabilitiesTest extends TestCase
         self::assertTrue(true);
     }
 
+    public function testSilencedNotice(): void
+    {
+        // Only variables should be assigned by reference.
+        @$foo = &self::provideData();
+
+        self::assertTrue(true);
+    }
+
     public function testWarning(): void
     {
         // foreach() argument must be of type array|object.
@@ -78,6 +86,14 @@ final class CapabilitiesTest extends TestCase
             function serialize() {}
             function unserialize(string $data) {}
         };
+
+        self::assertTrue(true);
+    }
+
+    public function testSilencedDeprecation(): void
+    {
+        // Passing null to parameter #1 ($string) of type string is deprecated
+        @trim(null);
 
         self::assertTrue(true);
     }

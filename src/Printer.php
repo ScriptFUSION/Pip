@@ -80,7 +80,9 @@ final class Printer implements Tracer
             $this->trace = new Trace($event->message(), $event->test()->file(), $event->test()->line());
         }
         if ($event instanceof PhpNoticeTriggered) {
-            $this->status ??= TestStatus::Notice;
+            if (!$event->wasSuppressed()) {
+                $this->status ??= TestStatus::Notice;
+            }
 
             $this->trace = Trace::fromEvent($event);
         }
@@ -92,7 +94,9 @@ final class Printer implements Tracer
             $this->trace = Trace::fromEvent($event);
         }
         if ($event instanceof PhpDeprecationTriggered) {
-            $this->status ??= TestStatus::Deprecated;
+            if (!$event->wasSuppressed()) {
+                $this->status ??= TestStatus::Deprecated;
+            }
 
             $this->trace = Trace::fromEvent($event);
         }
