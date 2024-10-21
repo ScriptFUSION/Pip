@@ -92,7 +92,7 @@ final class CapabilitiesTest extends TestCase
 
     public function testSilencedDeprecation(): void
     {
-        // Passing null to parameter #1 ($string) of type string is deprecated
+        // Passing null to parameter #1 ($string) of type string is deprecated.
         @trim(null);
 
         self::assertTrue(true);
