@@ -76,7 +76,7 @@ The printer's capabilities are exploited via `CapabilitiesTest`. However, this t
 
 The real tests, also known as *functional tests*, are located in `test/functional`, written in PHPT format. PHPT is a [scarcely documented format](http://qa.php.net/phpt_details.php) designed to support [testing PHP itself](https://qa.php.net/write-test.php). An undocumented feature of PHPUnit is its limited support for a subset of the PHPT test specification, which we exploit to test PHPUnit itself with our printer implementation loaded.
 
-To run the tests, simply specify `vendor/bin/phpunit -c test` on the command line from the project directory. By default, we run all the functional PHPT tests. To run `CapabilitiesTest` instead, specify `vendor/bin/phpunit -c test test/CapabilitiesTest`.
+To run the tests, simply specify `vendor/bin/phpunit -c test` on the command line from the project directory. By default, we run all the functional PHPT tests. To run `CapabilitiesTest` instead, specify `vendor/bin/phpunit -c test test/CapabilitiesTest.php`.
 
 ### Writing a functional test
 
