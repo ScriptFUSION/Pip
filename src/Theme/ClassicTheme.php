@@ -46,8 +46,8 @@ final class ClassicTheme implements Theme
             $throwable = $throwable->previous();
         }
 
-        $firstIssue = true;
-        foreach ($result->uniqueTraces as $trace) {
+        $lastKey = array_key_last($result->uniqueTraces);
+        foreach ($result->uniqueTraces as $key => $trace) {
             if (!$trace->suppressed) {
                 $issueStatusColour = self::getColour($trace->issueStatus);
                 printf(
@@ -57,10 +57,9 @@ final class ClassicTheme implements Theme
                     $trace->message,
                     $trace->file,
                     $trace->line,
-                    $firstIssue ? PHP_EOL . PHP_EOL : PHP_EOL,
+                    $key === $lastKey ? PHP_EOL . PHP_EOL : PHP_EOL,
                 );
             }
-            $firstIssue = false;
         }
     }
 
