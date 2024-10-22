@@ -34,13 +34,11 @@ final class Trace
      */
     public function getIssueId(): string
     {
-        return sha1(
-            sprintf(
-                '%s:%s:%s',
-                $this->file,
-                $this->line,
-                $this->message,
-            ),
+        return sprintf(
+            '%s:%s:%s',
+            $this->file,
+            $this->line,
+            $this->message,
         );
     }
 }
