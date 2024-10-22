@@ -98,6 +98,34 @@ final class CapabilitiesTest extends TestCase
         self::assertTrue(true);
     }
 
+    private function triggerWarning(): void
+    {
+        foreach (1 as $n) {}
+    }
+
+    public function testDuplicateWarningsA(): void
+    {
+        $this->triggerWarning();
+
+        self::assertTrue(true);
+    }
+
+    public function testDuplicateWarningsB(): void
+    {
+        $this->triggerWarning();
+        $this->triggerWarning();
+        $this->triggerWarning();
+
+        foreach (1 as $n) {}
+
+        self::assertTrue(true);
+    }
+
+    public function testDuplicateWarningsC(): void
+    {
+        self::assertTrue(true);
+    }
+
     #[DataProvider('provideData')]
 
     public function testDataProvider(): void
