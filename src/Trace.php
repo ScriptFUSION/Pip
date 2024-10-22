@@ -19,12 +19,17 @@ final class Trace
 
     public static function fromEvent(PhpWarningTriggered|PhpNoticeTriggered|PhpDeprecationTriggered $event): self
     {
-        $issueStatus = match (true) {
-            $event instanceof PhpWarningTriggered => TestStatus::Warning,
-            $event instanceof PhpNoticeTriggered => TestStatus::Notice,
-            $event instanceof PhpDeprecationTriggered => TestStatus::Deprecated,
-        };
-        return new self($issueStatus, $event->message(), $event->file(), $event->line(), $event->wasSuppressed());
+        return new self(
+            match (true) {
+                $event instanceof PhpWarningTriggered => TestStatus::Warning,
+                $event instanceof PhpNoticeTriggered => TestStatus::Notice,
+                $event instanceof PhpDeprecationTriggered => TestStatus::Deprecated,
+            },
+            $event->message(),
+            $event->file(),
+            $event->line(),
+            $event->wasSuppressed(),
+        );
     }
 
     /**
