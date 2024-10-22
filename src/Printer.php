@@ -32,12 +32,20 @@ final class Printer implements Tracer
 
     private ?Throwable $throwable = null;
 
-    private ?Trace $trace = null;
+    /**
+     * @var array<string, Trace>
+     */
+    private array $uniqueTraces = [];
 
     private bool $flawless = true;
 
     public function __construct(private readonly PipConfig $config)
     {
+    }
+
+    private function addUniqueTrace(Trace $trace): void
+    {
+        $this->uniqueTraces[$trace->getIssueId()] = $trace;
     }
 
     public function trace(Event $event): void
@@ -77,28 +85,28 @@ final class Printer implements Tracer
                 $this->status = TestStatus::Risky;
             }
 
-            $this->trace = new Trace($event->message(), $event->test()->file(), $event->test()->line());
+            $this->uniqueTraces[] = new Trace(TestStatus::Risky, $event->message(), $event->test()->file(), $event->test()->line());
         }
         if ($event instanceof PhpNoticeTriggered) {
             if (!$event->wasSuppressed()) {
                 $this->status ??= TestStatus::Notice;
             }
 
-            $this->trace = Trace::fromEvent($event);
+            $this->addUniqueTrace(Trace::fromEvent($event));
         }
         if ($event instanceof PhpWarningTriggered) {
             if (!$event->wasSuppressed()) {
                 $this->status ??= TestStatus::Warning;
             }
 
-            $this->trace = Trace::fromEvent($event);
+            $this->addUniqueTrace(Trace::fromEvent($event));
         }
         if ($event instanceof PhpDeprecationTriggered) {
             if (!$event->wasSuppressed()) {
                 $this->status ??= TestStatus::Deprecated;
             }
 
-            $this->trace = Trace::fromEvent($event);
+            $this->addUniqueTrace(Trace::fromEvent($event));
         }
 
         if ($event instanceof Finished) {
@@ -135,10 +143,11 @@ final class Printer implements Tracer
                 $ms,
                 $performance,
                 $this->throwable,
-                $this->trace,
+                $this->uniqueTraces
             ));
 
-            $this->trace = $this->throwable = $this->status = null;
+            $this->uniqueTraces = [];
+            $this->throwable = $this->status = null;
         }
 
         if ($event instanceof \PHPUnit\Event\TestRunner\Finished) {

@@ -46,15 +46,21 @@ final class ClassicTheme implements Theme
             $throwable = $throwable->previous();
         }
 
-        if ($result->trace && !$result->trace->suppressed) {
-            printf(
-                Color::colorize("fg-$statusColour", '%s%s: %s in %s on line %s%1$s%1$s'),
-                PHP_EOL,
-                $result->status->name,
-                $result->trace->message,
-                $result->trace->file,
-                $result->trace->line,
-            );
+        $firstIssue = true;
+        foreach ($result->uniqueTraces as $trace) {
+            if (!$trace->suppressed) {
+                $issueStatusColour = self::getColour($trace->issueStatus);
+                printf(
+                    Color::colorize("fg-$issueStatusColour", '%s%s: %s in %s on line %d%s'),
+                    PHP_EOL,
+                    $trace->issueStatus->name,
+                    $trace->message,
+                    $trace->file,
+                    $trace->line,
+                    $firstIssue ? PHP_EOL . PHP_EOL : PHP_EOL,
+                );
+            }
+            $firstIssue = false;
         }
     }
 

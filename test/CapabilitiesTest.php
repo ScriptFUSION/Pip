@@ -126,6 +126,24 @@ final class CapabilitiesTest extends TestCase
         self::assertTrue(true);
     }
 
+    public function testMixedSeverities(): void
+    {
+        // Silenced warning.
+        $foo = @$bar;
+
+        // Notice.
+        $foo = &self::provideData();
+        // Warning.
+        foreach (1 as $n) {}
+        // Deprecated.
+        trim(null);
+
+        // Silenced warning.
+        $foo = @$bar;
+
+        self::assertTrue(true);
+    }
+
     #[DataProvider('provideData')]
 
     public function testDataProvider(): void

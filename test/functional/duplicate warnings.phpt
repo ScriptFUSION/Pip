@@ -21,6 +21,8 @@ Warning: foreach() argument must be of type array|object, int given in %s%eCapab
 [33;1m
 Warning: foreach() argument must be of type array|object, int given in %s%eCapabilitiesTest.php on line %d
 
+[0m[33;1m
+Warning: foreach() argument must be of type array|object, int given in %s%eCapabilitiesTest.php on line %d
 [0m100% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testDuplicateWarningsC[0m [32m(%d ms)[0m
 
 
