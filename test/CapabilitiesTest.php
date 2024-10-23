@@ -138,9 +138,6 @@ final class CapabilitiesTest extends TestCase
         // Deprecated.
         trim(null);
 
-        // Silenced warning.
-        $foo = @$bar;
-
         self::assertTrue(true);
     }
 
