@@ -7,6 +7,7 @@ use PHPUnit\Util\Color;
 use ScriptFUSION\Pip\TestPerformance;
 use ScriptFUSION\Pip\TestResult;
 use ScriptFUSION\Pip\TestStatus;
+use ScriptFUSION\Pip\Trace;
 
 final class ClassicTheme implements Theme
 {
@@ -46,19 +47,20 @@ final class ClassicTheme implements Theme
             $throwable = $throwable->previous();
         }
 
-        $lastKey = array_key_last($result->uniqueTraces);
-        foreach ($result->uniqueTraces as $key => $trace) {
+        $firstIssue = true;
+        foreach ($result->uniqueTraces as $trace) {
             if (!$trace->suppressed) {
                 $issueStatusColour = self::getColour($trace->issueStatus);
                 printf(
                     Color::colorize("fg-$issueStatusColour", '%s%s: %s in %s on line %d%s'),
-                    PHP_EOL,
+                    $firstIssue ? PHP_EOL : '',
                     $trace->issueStatus->name,
                     $trace->message,
                     $trace->file,
                     $trace->line,
-                    $key === $lastKey ? PHP_EOL . PHP_EOL : PHP_EOL,
+                    PHP_EOL . PHP_EOL,
                 );
+                $firstIssue = false;
             }
         }
     }
