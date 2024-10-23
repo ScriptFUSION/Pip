@@ -85,6 +85,7 @@ final class Printer implements Tracer
                 $this->status = TestStatus::Risky;
             }
 
+            // No duplicate handling needed. Risky is a test status (rather than issue status) and it's final.
             $this->uniqueTraces[] = new Trace(TestStatus::Risky, $event->message(), $event->test()->file(), $event->test()->line());
         }
         if ($event instanceof PhpNoticeTriggered) {
