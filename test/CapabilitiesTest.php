@@ -140,7 +140,7 @@ final class CapabilitiesTest extends TestCase
 
     public function testSilencedWarningNotAffectsStatus(): void
     {
-        $foo = @$bar;
+        @$this->triggerWarning();
 
         // Notice.
         $foo = &self::provideData();
