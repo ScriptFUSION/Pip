@@ -128,15 +128,22 @@ final class CapabilitiesTest extends TestCase
 
     public function testMixedSeverities(): void
     {
-        // Silenced warning.
-        $foo = @$bar;
-
         // Notice.
         $foo = &self::provideData();
         // Warning.
         foreach (1 as $n) {}
         // Deprecated.
         trim(null);
+
+        self::assertTrue(true);
+    }
+
+    public function testSilencedWarningNotAffectsStatus(): void
+    {
+        $foo = @$bar;
+
+        // Notice.
+        $foo = &self::provideData();
 
         self::assertTrue(true);
     }
