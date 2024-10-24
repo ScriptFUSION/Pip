@@ -15,7 +15,8 @@ final class TestResult
         public readonly int $testDurationMs,
         public readonly TestPerformance $testPerformance,
         public readonly ?Throwable $throwable,
-        public readonly ?Trace $trace,
+        /** @var array<string, Trace> */
+        public readonly array $uniqueTraces,
     ) {
     }
 
