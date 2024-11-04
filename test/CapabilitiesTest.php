@@ -130,8 +130,7 @@ final class CapabilitiesTest extends TestCase
     {
         // Notice.
         $foo = &self::provideData();
-        // Warning.
-        foreach (1 as $n) {}
+        $this->triggerWarning();
         // Deprecated.
         trim(null);
 
