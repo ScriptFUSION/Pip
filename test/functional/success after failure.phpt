@@ -1,5 +1,5 @@
 --TEST--
-Successful tests following a failure have coloured progress marker.
+Tests that when successful tests follow a failed test, the flawed test suite marker (!) is displayed.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter '::testSuccessAfterFailure\h'

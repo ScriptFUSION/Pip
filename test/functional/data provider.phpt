@@ -1,5 +1,5 @@
 --TEST--
-A successful test is fed two cases by a data provider.
+Tests that when a test is fed multiple cases by a data provider, each case is printed with its name and arguments.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter '::testDataProvider\h'

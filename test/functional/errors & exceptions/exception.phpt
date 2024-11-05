@@ -1,11 +1,11 @@
 --TEST--
-An exception is thrown in the test case.
+Tests that when a test throws an exception, the test is so marked and the exception type and message are printed.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testException$
 
 --FILE_EXTERNAL--
-../PHPUnit runner.php
+../../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

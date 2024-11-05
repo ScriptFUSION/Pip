@@ -1,11 +1,12 @@
 --TEST--
-An exception containing another exception is thrown by another class.
+Tests that when the SUT throws an exception containing another exception, both exceptions, and their traces, are
+printed.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testNestedException$
 
 --FILE_EXTERNAL--
-../PHPUnit runner.php
+../../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s

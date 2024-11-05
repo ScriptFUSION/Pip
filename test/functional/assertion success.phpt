@@ -1,5 +1,5 @@
 --TEST--
-An assertion succeeds.
+Tests that when an assertion succeeds, the test is so marked.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testSuccess$

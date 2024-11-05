@@ -1,5 +1,5 @@
 --TEST--
-Tests that multiple files tested together are counted correctly.
+Tests that when multiple files are tested together, they are counted correctly.
 
 --ARGS--
 -c test --colors=always test/multi

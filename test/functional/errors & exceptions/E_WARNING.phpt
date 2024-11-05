@@ -1,11 +1,11 @@
 --TEST--
-A test is marked "warning".
+Tests that when a test emits a PHP warning, the test is so marked and the warning message is printed immediately.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testWarning$
 
 --FILE_EXTERNAL--
-../PHPUnit runner.php
+../../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s
@@ -20,6 +20,6 @@ Warning: foreach() argument must be of type array|object, int given in %s%eCapab
 [0m
 
 Time: %s
-%A
+
 [30;43mOK, but %s![0m
 [30;43mTests: 1[0m[30;43m, Assertions: 1[0m[30;43m, Warnings: 1[0m[30;43m.[0m

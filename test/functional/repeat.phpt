@@ -1,5 +1,5 @@
 --TEST--
-An successful test is repeated 80 times.
+Tests that when a successful test is repeated 80 times, it prints the expected progress output.
 
 --XFAIL--
 --repeat removed in PHPUnit 10. See: https://github.com/sebastianbergmann/phpunit/issues/5718

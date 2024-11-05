@@ -1,12 +1,12 @@
 --TEST--
-When a test generates errors with different severities and silences some of them, first non-silenced error determines
-overall test status and all non-silenced messages are shown.
+Tests that when multiple PHP error types are emitted, the first so emitted determines the test status but all error
+messages are printed.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testMixedSeverities$
 
 --FILE_EXTERNAL--
-../PHPUnit runner.php
+../../PHPUnit runner.php
 
 --EXPECTF--
 PHPUnit %s
@@ -25,6 +25,6 @@ Notice: Only variables should be assigned by reference in %s%eCapabilitiesTest.p
 [0m
 
 Time: %s
-%A
+
 [30;43mOK, but %s![0m
 [30;43mTests: 1[0m[30;43m, Assertions: 1[0m[30;43m, Warnings: 1[0m[30;43m, Deprecations: 1[0m[30;43m, Notices: 1[0m[30;43m.[0m

@@ -17,5 +17,5 @@ Configuration: %s
 
 
 Time: %s
-%A
+
 [30;42mOK (1 test, 1 assertion)[0m

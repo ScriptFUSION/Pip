@@ -1,5 +1,5 @@
 --TEST--
-A test is marked "incomplete".
+Tests that when a test is marked "incomplete", the test is so marked.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testIncomplete$

@@ -1,5 +1,5 @@
 --TEST--
-A test is skipped.
+Tests that when a test is marked "skipped", the test is so marked.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testSkipped$

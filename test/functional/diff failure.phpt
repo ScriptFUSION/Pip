@@ -1,5 +1,5 @@
 --TEST--
-An assertion fails and produces a diff.
+Tests that when an assertion fails, a diff is printed immediately.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testDiffFailure$

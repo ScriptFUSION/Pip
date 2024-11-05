@@ -1,5 +1,5 @@
 --TEST--
-An assertion fails.
+Tests that when an assertion fails, the test is so marked and the assertion message is printed immediately.
 
 --ARGS--
 -c test --colors=always test/CapabilitiesTest.php --filter ::testFailure$
