@@ -2,7 +2,7 @@
 Tests that when a test takes more than 1s to complete, its timer output is shown in red.
 
 --ARGS--
--c test --colors=always test/CapabilitiesTest.php --filter ::testGigaSlow$
+-c test --colors=always test/CapabilitiesTest.php --filter ::testVerySlow$
 
 --FILE_EXTERNAL--
 ../PHPUnit runner.php
@@ -13,7 +13,7 @@ PHPUnit %s
 Runtime: %s
 Configuration: %s
 
-100% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testGigaSlow[0m [31m(%d ms)[0m
+100% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testVerySlow[0m [31m(%d ms)[0m
 
 
 Time: %s

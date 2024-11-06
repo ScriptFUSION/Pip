@@ -5,7 +5,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the capabilities of the PIP printer.
+ * Tests the capabilities of the Pip printer.
  */
 final class CapabilitiesTest extends TestCase
 {
@@ -155,7 +155,7 @@ final class CapabilitiesTest extends TestCase
         self::assertTrue(true);
     }
 
-    public function testGigaSlow(): void
+    public function testVerySlow(): void
     {
         sleep(1);
 

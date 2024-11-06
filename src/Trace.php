@@ -33,17 +33,12 @@ final class Trace
     }
 
     /**
-     * Key to identify identical issues, using the same rules as PHPUnit.
+     * Gets a unique identifier for the source of this trace, using the same rules as PHPUnit.
      *
      * @see \PHPUnit\TestRunner\TestResult\Collector::issueId
      */
-    public function getIssueId(): string
+    public function getId(): string
     {
-        return sprintf(
-            '%s:%s:%s',
-            $this->file,
-            $this->line,
-            $this->message,
-        );
+        return "$this->file:$this->line:$this->message";
     }
 }

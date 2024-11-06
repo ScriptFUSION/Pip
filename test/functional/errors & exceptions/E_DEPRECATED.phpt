@@ -14,8 +14,8 @@ Runtime: %s
 Configuration: %s
 
 100% [33;1mD[0m [33;1mScriptFUSIONTest\Pip\CapabilitiesTest::testDeprecation[0m [32m(%d ms)[0m
-[33;1m
-Deprecated: Serializable@anonymous implements the Serializable interface, which is deprecated. Implement __serialize() and __unserialize() instead (or in addition, if support for old PHP versions is necessary) in %s%eCapabilitiesTest.php on line %d
+
+[33;1mDeprecated: Serializable@anonymous implements the Serializable interface, which is deprecated. Implement __serialize() and __unserialize() instead (or in addition, if support for old PHP versions is necessary) in %s%eCapabilitiesTest.php on line %d
 
 [0m
 

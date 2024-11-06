@@ -15,7 +15,7 @@ Pip is a [PHPUnit][] extension that immediately prints exceptions and assertion 
 ## Benefits
 
 * Display the name of each test case as it is executed.
-* Display the execution time of each test in tiered colour bands.
+* Display the execution time of each test in configurable, tiered colour bands.
 * Immediately print exceptions, assertion failures, warnings, notice and deprecation messages as they occur.
 * Flawless test suite indicator: success dot turns to red exclamation mark if any prior tests failed. Useful for CI consoles without a scrollback buffer.
 
@@ -57,10 +57,10 @@ Pip's behaviour can be customized by adding `<parameter>` nodes as children of t
 
 | Parameter name  | Default value | Description                                                            |
 |-----------------|---------------|------------------------------------------------------------------------|
-| perf.slow       | 200 (ms)      | Sets the performance threshold for _slow_ (yellow) tests               |
-| perf.vslow      | 1000 (ms)     | Sets the performance threshold for _very slow_ (red) tests             |
+| perf.slow       | 200 (ms)      | Sets the performance threshold for _slow_ (yellow) tests.              |
+| perf.vslow      | 1000 (ms)     | Sets the performance threshold for _very slow_ (red) tests.            |
 | test.dp.args    | true          | True to show the arguments passed by the data provider, false to hide. |
-| test.name.strip | ''            | Strips the specified matching portion of the test name                 |
+| test.name.strip | ''            | Strips the specified matching portion of the test name.                |
 
 ## Requirements
 
@@ -72,13 +72,21 @@ Pip's behaviour can be customized by adding `<parameter>` nodes as children of t
 
 ## Testing Pip
 
-The printer's capabilities are exploited via `CapabilitiesTest`. However, this test file isn't run directly because many of these tests are designed to fail. Instead, we write tests that run PHPUnit internally, each of which invokes one of the capability test cases and verifies its output.
+To run the full test suite, use the following command.
+
+```sh
+composer test
+```
+
+Pip's capabilities are exploited via `CapabilitiesTest`. However, this test file isn't run directly because many of these tests are designed to fail. Instead, we write tests that run PHPUnit internally, each of which invokes one of the capability test cases and verifies its output. To run `CapabilitiesTest`, specify the following command
+
+```sh
+composer test test/CapabilitiesTest.php
+```
 
 The real tests, also known as *functional tests*, are located in `test/functional`, written in PHPT format. PHPT is a [scarcely documented format](http://qa.php.net/phpt_details.php) designed to support [testing PHP itself](https://qa.php.net/write-test.php). An undocumented feature of PHPUnit is its limited support for a subset of the PHPT test specification, which we exploit to test PHPUnit itself with our printer implementation loaded.
 
-To run the tests, simply specify `vendor/bin/phpunit -c test` on the command line from the project directory. By default, we run all the functional PHPT tests. To run `CapabilitiesTest` instead, specify `vendor/bin/phpunit -c test test/CapabilitiesTest.php`.
-
-### Writing a functional test
+### Writing functional tests
 
 To test the output of a particular capability we run `CapabilitiesTest` with the `--filter` option to target a specific test case. Each functional test contains the arguments passed to PHPUnit in the `--ARGS--` section of the file. These arguments can be pasted directly after the PHPUnit command to see the resulting output from that test case. We verify the output in the `--EXPECTF--` section of the file.
 

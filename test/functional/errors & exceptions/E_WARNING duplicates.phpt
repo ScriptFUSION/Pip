@@ -14,8 +14,8 @@ Runtime: %s
 Configuration: %s
 
 100% [33;1mW[0m [33;1mScriptFUSIONTest\Pip\CapabilitiesTest::testWarningDuplicates[0m [32m(%d ms)[0m
-[33;1m
-Warning: foreach() argument must be of type array|object, int given in %s%eCapabilitiesTest.php on line %d
+
+[33;1mWarning: foreach() argument must be of type array|object, int given in %s%eCapabilitiesTest.php on line %d
 
 [0m[33;1mWarning: foreach() argument must be of type array|object, int given in %s%eCapabilitiesTest.php on line %d
 

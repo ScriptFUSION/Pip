@@ -43,11 +43,6 @@ final class Printer implements Tracer
     {
     }
 
-    private function addUniqueTrace(Trace $trace): void
-    {
-        $this->uniqueTraces[$trace->getIssueId()] = $trace;
-    }
-
     public function trace(Event $event): void
     {
         if ($event instanceof ExecutionStarted) {
@@ -154,5 +149,10 @@ final class Printer implements Tracer
         if ($event instanceof \PHPUnit\Event\TestRunner\Finished) {
             echo PHP_EOL, PHP_EOL;
         }
+    }
+
+    private function addUniqueTrace(Trace $trace): void
+    {
+        $trace->suppressed || $this->uniqueTraces[$trace->getId()] ??= $trace;
     }
 }
