@@ -18,5 +18,5 @@ Configuration: %s
 
 Time: %s
 
-[30;43mOK, but some tests were skipped![0m
-[30;43mTests: 1[0m[30;43m, Assertions: 0[0m[30;43m, Skipped: 1[0m[30;43m.[0m
+[30;4%dmOK, but some tests were skipped![0m
+[30;4%dmTests: 1[0m[30;4%dm, Assertions: 0[0m[30;4%dm, Skipped: 1[0m[30;4%dm.[0m
