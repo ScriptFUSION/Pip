@@ -13,22 +13,22 @@ PHPUnit %s
 Runtime: %s
 Configuration: %s
 
- 25% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%swith data%s(true)[0m [32m(%d ms)[0m
- 50% [31;1mF[0m [31;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%swith data%s(false)[0m [32m(%d ms)[0m
+ 25% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%S with data%S (true)[0m [32m(%d ms)[0m
+ 50% [31;1mF[0m [31;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%S with data%S (false)[0m [32m(%d ms)[0m
 
 [31mFailed asserting that false is true.
 [0m
 [31m%s%eCapabilitiesTest.php:%d
 [0m
- 75% [31m![0m [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%swith data%s(true)[0m [32m(%d ms)[0m
-100% [31m![0m [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%swith data%s(true)[0m [32m(%d ms)[0m
+ 75% [31m![0m [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%S with data%S (true)[0m [32m(%d ms)[0m
+100% [31m![0m [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%S with data%S (true)[0m [32m(%d ms)[0m
 
 
 Time: %s
 
 There was 1 failure:
 
-1) ScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%swith data%s(false)
+1) ScriptFUSIONTest\Pip\CapabilitiesTest::testSuccessAfterFailure%S with data%S (false)
 Failed asserting that false is true.
 
 %s%eCapabilitiesTest.php:%d

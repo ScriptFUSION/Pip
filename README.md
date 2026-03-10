@@ -64,11 +64,11 @@ Pip's behaviour can be customized by adding `<parameter>` nodes as children of t
 
 ## Requirements
 
-| Pip version | PHPUnit versions | Minimum PHP version |
-|:-----------:|:----------------:|:-------------------:|
-|      3      |     10 / 11      |      8.1 / 8.2      |
-|      2      |     *yanked*     |          -          |
-|      1      |      5 / 6       |      5.6 / 7.0      |
+| Pip version | PHPUnit versions  |  Minimum PHP version  |
+|:-----------:|:-----------------:|:---------------------:|
+|      3      | 10 / 11 / 12 / 13 | 8.1 / 8.2 / 8.3 / 8.4 |
+|      2      |     *yanked*      |           -           |
+|      1      |       5 / 6       |       5.6 / 7.0       |
 
 ## Testing Pip
 
