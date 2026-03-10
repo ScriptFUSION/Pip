@@ -27,6 +27,8 @@ jobs:
           - 13
         exclude:
           - php: 8.1
+            phpunit: 11
+          - php: 8.1
             phpunit: 12
           - php: 8.1
             phpunit: 13
