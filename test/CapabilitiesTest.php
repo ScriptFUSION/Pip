@@ -121,8 +121,7 @@ final class CapabilitiesTest extends TestCase
     }
 
     #[DataProvider('provideData')]
-
-    public function testDataProvider(): void
+    public function testDataProvider(string $data): void
     {
         self::assertTrue(true);
     }
