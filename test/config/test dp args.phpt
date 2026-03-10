@@ -13,8 +13,8 @@ PHPUnit %s
 Runtime: %s
 Configuration: %s
 
- 50% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testDataProvider with data set "foo"[0m [32m(%d ms)[0m
-100% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testDataProvider with data set #0[0m [32m(%d ms)[0m
+ 50% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testDataProvider%swith data%s[0m [32m(%d ms)[0m
+100% . [32;1mScriptFUSIONTest\Pip\CapabilitiesTest::testDataProvider%swith data%s[0m [32m(%d ms)[0m
 
 
 Time: %s
